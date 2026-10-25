@@ -1,5 +1,5 @@
 import argparse, json, sys
-from .core import dome, public, svg
+from .core import dome, public, svg, panel_proxies, connector_table
 
 def main(argv=None):
     p = argparse.ArgumentParser(prog="sabat", description="SÁBÁT geodesic module explorer")
@@ -10,7 +10,9 @@ def main(argv=None):
         r = dome(json.load(open(a.spec, encoding="utf-8")))
     except ValueError as e:
         print(f"invalid spec: {e}", file=sys.stderr); return 2
-    print(json.dumps(public(r), indent=2, ensure_ascii=False))
+    out = public(r); out["connector_table"] = connector_table(r)
+    pp = panel_proxies(r); out["panel_proxy_HEURISTIC"] = {"note": "geometric heuristic, not a measured acoustic result", "mean_openness": round(sum(x["openness"] for x in pp)/len(pp),4), "mean_facing_centre": round(sum(x["facing_centre"] for x in pp)/len(pp),4), "panels": pp}
+    print(json.dumps(out, indent=2, ensure_ascii=False))
     if a.svg:
         open(a.svg, "w", encoding="utf-8").write(svg(r))
     return 0

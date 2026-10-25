@@ -38,6 +38,25 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 | connectors | 15 × 4-way · 6 × 5-way · 40 × 6-way |
 | total strut length | 121.47 m |
 
+### Connector table (computed from the geometry)
+
+| hub | count | strut elevation below tangent plane | angle between neighbouring struts |
+|---|---|---|---|
+| 4-way (rim) | 15 | 11.63–11.91° | 59.99–180° (180° = open rim side) |
+| 5-way | 6 | 10.03–10.04° | 71.99–72.01° |
+| 6-way | 40 | 10.03–11.91° | 55.68–62.17° |
+
+### Panel openness / acoustic proxy: **heuristic, not a measured acoustic result**
+
+For each panel, the tool reports:
+
+- `infill_ratio`: the girih star's area divided by the panel's area.
+- `openness`: 1 − `infill_ratio`.
+- `facing_centre`: the |cos| between the panel's normal and the direction to the centre of the floor.
+- `focus_proxy`: `infill_ratio` × `facing_centre`, a rough flag for panels that may focus sound.
+
+These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.757 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
+
 Open `site/index.html` to see the plan view.
 
 ## Original vision: still to build

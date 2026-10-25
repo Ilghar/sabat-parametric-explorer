@@ -40,3 +40,21 @@ class Infill(unittest.TestCase):
         r = dome(SPEC); self.assertEqual(svg(r).count("<polygon"), r["panels"])
     def test_geometry_json(self):
         g = geometry_json(dome(SPEC)); self.assertEqual(len(g["edges"]), 165); self.assertEqual(len(g["nodes"]), 61)
+
+from sabat.core import panel_proxies, connector_table
+class Proxies(unittest.TestCase):
+    def test_proxy_ranges_and_determinism(self):
+        r = dome(SPEC); p = panel_proxies(r)
+        self.assertEqual(len(p), r["panels"]); self.assertEqual(p, panel_proxies(dome(SPEC)))
+        for x in p:
+            self.assertTrue(0 < x["infill_ratio"] < 1); self.assertAlmostEqual(x["infill_ratio"] + x["openness"], 1, places=3)
+            self.assertTrue(0 <= x["facing_centre"] <= 1)
+    def test_connector_table(self):
+        r = dome(SPEC); t = connector_table(r)
+        self.assertEqual({x["valence"]: x["count"] for x in t}, {c["valence"]: c["count"] for c in r["connectors_by_valence"]})
+        six = [x for x in t if x["valence"] == 6][0]
+        self.assertTrue(50 < six["angle_between_struts_deg"][0] <= 60 <= six["angle_between_struts_deg"][1] < 70)
+        self.assertTrue(0 < six["strut_elevation_deg"][0] and six["strut_elevation_deg"][1] < 15)
+    def test_full_sphere_gaps_sum_360(self):
+        t = connector_table(dome({"name": "s", "frequency": 2, "diameter_cm": 100, "height_cm": 100}))
+        five = [x for x in t if x["valence"] == 5][0]; self.assertTrue(five["angle_between_struts_deg"][1] < 73)

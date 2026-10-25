@@ -144,3 +144,64 @@ def girih_infill(tri, k=0.38):
         v = (a[0] + (cx - a[0]) * k * 1.6, a[1] + (cy - a[1]) * k * 1.6)
         out += [v, (m[0] + (cx - m[0]) * k, m[1] + (cy - m[1]) * k)]
     return out  # 6 vertices, alternating vertex-point / midpoint-point
+
+def _sub(a, b): return tuple(x - y for x, y in zip(a, b))
+def _cross(a, b): return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+def _dot(a, b): return sum(x * y for x, y in zip(a, b))
+def _area(pts):  # planar polygon area in 3D via fan
+    s = (0.0, 0.0, 0.0)
+    for i in range(1, len(pts) - 1):
+        c = _cross(_sub(pts[i], pts[0]), _sub(pts[i + 1], pts[0])); s = tuple(x + y for x, y in zip(s, c))
+    return 0.5 * math.sqrt(_dot(s, s))
+
+def panel_proxies(result, k=0.38):
+    """HEURISTIC, NOT A MEASURED ACOUSTIC RESULT.
+    infill_ratio  = star area / panel area (share of panel that is mosaic infill)
+    openness      = 1 - infill_ratio (geometric open share of the panel)
+    facing_centre = |cos| between panel normal and the direction to the floor
+                    centre of the dome (1 = panel faces the listener spot)
+    focus_proxy   = infill_ratio * facing_centre (a rough reflection-focus flag)"""
+    out = []; zfloor = min(p[2] for p in result["_geom"]["pts"])
+    for i, t in enumerate(_panels(result)):
+        star = _star3d(t, k)
+        a_p, a_s = _area(t), _area(star)
+        n = _cross(_sub(t[1], t[0]), _sub(t[2], t[0])); nl = math.sqrt(_dot(n, n))
+        c = tuple(sum(p[j] for p in t) / 3 for j in range(3))
+        d = _sub((0.0, 0.0, zfloor), c); dl = math.sqrt(_dot(d, d))
+        f = abs(_dot(n, d)) / (nl * dl)
+        r = a_s / a_p
+        out.append({"panel": i, "infill_ratio": round(r, 4), "openness": round(1 - r, 4),
+                    "facing_centre": round(f, 4), "focus_proxy": round(r * f, 4)})
+    return out
+
+def _star3d(tri, k):
+    c = tuple(sum(p[j] for p in tri) / 3 for j in range(3)); out = []
+    for i in range(3):
+        a, b = tri[i], tri[(i + 1) % 3]
+        m = tuple((a[j] + b[j]) / 2 for j in range(3))
+        out += [tuple(a[j] + (c[j] - a[j]) * k * 1.6 for j in range(3)),
+                tuple(m[j] + (c[j] - m[j]) * k for j in range(3))]
+    return out
+
+def connector_table(result):
+    """Per hub valence: strut elevation below the hub's tangent plane
+    (degrees) and the angles between consecutive struts around the hub."""
+    g = result["_geom"]; P = g["pts"]; I = g["idx"]; nb = {}
+    for a, b in g["edges"]:
+        nb.setdefault(a, []).append(b); nb.setdefault(b, []).append(a)
+    hubs = {}
+    for n, ns in nb.items():
+        p = P[I[n]]; pl = math.sqrt(_dot(p, p)); u = tuple(x / pl for x in p)
+        ref = _cross(u, (1, 0, 0) if abs(u[0]) < 0.9 else (0, 1, 0)); ref2 = _cross(u, ref)
+        els, az = [], []
+        for m in ns:
+            d = _sub(P[I[m]], p); dl = math.sqrt(_dot(d, d))
+            els.append(math.degrees(math.asin(max(-1, min(1, -_dot(d, u) / dl)))))
+            az.append(math.atan2(_dot(d, ref2), _dot(d, ref)))
+        az.sort(); gaps = [math.degrees((az[(i + 1) % len(az)] - az[i]) % (2 * math.pi)) for i in range(len(az))]
+        h = hubs.setdefault(len(ns), {"count": 0, "elev": [], "gap": []})
+        h["count"] += 1; h["elev"] += els; h["gap"] += gaps
+    return [{"valence": v, "count": h["count"],
+             "strut_elevation_deg": [round(min(h["elev"]), 2), round(max(h["elev"]), 2)],
+             "angle_between_struts_deg": [round(min(h["gap"]), 2), round(max(h["gap"]), 2)]}
+            for v, h in sorted(hubs.items())]
