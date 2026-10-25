@@ -17,7 +17,7 @@ class Adv(unittest.TestCase):
         for k, v in (("diameter_cm", float("nan")), ("diameter_cm", float("inf")), ("diameter_cm", 1e12), ("diameter_cm", 1e-9), ("height_cm", float("nan"))):
             with self.assertRaises(ValueError): dome({**B, k: v})
     def test_svg_escapes_name(self):
-        s = svg(dome({**B, "name": "<script>&"})); self.assertNotIn("<script>", s); self.assertIn("<script>&", s)
+        s = svg(dome({**B, "name": "<script>&"})); self.assertNotIn("<script>", s); self.assertIn("&lt;script&gt;&amp;", s)
     def _run(self, *a):
         e = io.StringIO()
         with contextlib.redirect_stderr(e), contextlib.redirect_stdout(io.StringIO()): code = main(list(a))

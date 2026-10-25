@@ -74,12 +74,15 @@ Open `site/index.html` to see the plan view.
 `tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
 
 ## Original vision: still to build
-- **Mosaic layer (started):** each panel now carries a deterministic girih star with three tips and three waists (tips toward the corners, waists pulled toward the centre), built from first principles; around each 5- and 6-way hub the tips point inward and suggest 5- and 6-fold rosettes; next: real pattern families inspired by the Ali Qapu music-hall ceiling.
+- **Mosaic layer (started):** each panel now carries a deterministic girih star with three tips and three waists (tips toward the corners, waists pulled toward the centre), built from first principles; around each 5- and 6-way hub the tips point inward and suggest 5- and 6-fold rosettes; next: real pattern families inspired by the ceiling of the Ali Qapu music room, Isfahan (c. 1615, under Shah ʿAbbas I) [1].
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.
 - **Structural testing:** add statistical and structural testing.
 - **Interactive 3D view (started):** `site/index.html` has a drag-to-rotate vanilla JS/SVG view; next: panel shading and textile envelope.
 - **"Gateways to heaven" study:** compare cosmological geometry across Chogha Zanbil, the Isfahan Friday Mosque, the Louvre pyramid and Notre-Dame.
+
+## References
+[1] Sussan Babaie, “Isfahan x. Monuments (2) Palaces”, *Encyclopaedia Iranica* (published 2007, updated 2014), https://www.iranicaonline.org/articles/isfahan-x2-palaces/ (dates the top floor's decorated private rooms of the ʿĀli Qāpu to around 1615, under Shah ʿAbbās I).
 
 © ilghar.studio. All rights reserved. Private.
