@@ -1,0 +1,18 @@
+{
+  "project": "SÁBÁT parametric explorer",
+  "creator": "ilghar.studio",
+  "visibility": "private",
+  "updated": "2026-10-25T14:08+01:00",
+  "tests": {"count": 15, "status": "pass", "python": "3.13"},
+  "done": [
+    "geodesic generator (icosahedral Class I, frequency 1-8) with height cut",
+    "strut families, connector counts, built height, total length",
+    "spec schema + validation, CLI, deterministic fixture (Ø370 × H230, 3V)",
+    "plan SVG with first-principles girih star infills (ilghar.studio palette)",
+    "drag-to-rotate 3D view (vanilla JS/SVG)",
+    "connector angle table per hub valence",
+    "per-panel openness/acoustic proxy — HEURISTIC, not measured",
+    "regression vs published 3V chord factors (Desert Domes, Domerama)"
+  ],
+  "remaining": "see handoff/NEXT.md"
+}
