@@ -64,12 +64,17 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
 
 ### Themes
-`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`, and a toggle button switches themes and remembers your choice (accessible via `aria-pressed`). The plan SVG and the 3D view are coloured through CSS variables. The tests check WCAG AA contrast for text and the 3:1 minimum for graphics.
+`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`. A button in the top corner names the mode it will switch to, remembers your choice, and tells screen readers whether dark mode is on. The plan SVG and the 3D view are coloured through CSS variables. The 3D view can be rotated by dragging, or by focusing it with Tab and using the arrow keys.
+
+Contrast, measured on the rendered page (headless Chrome, computed colours): all page text is plum `#4a3a5c` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
 
 Open `site/index.html` to see the plan view.
 
+### Checked against published tables
+`tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
+
 ## Original vision: still to build
-- **Mosaic layer (started):** each panel now carries a deterministic three-pointed girih star (tips toward the corners, waists pulled to the centre) built from first principles; around each 5- and 6-way hub the tips meet as 5- and 6-fold rosettes; next: real pattern families inspired by the Ali Qapu music-hall ceiling (1597 CE).
+- **Mosaic layer (started):** each panel now carries a deterministic girih star with three tips and three waists (tips toward the corners, waists pulled toward the centre), built from first principles; around each 5- and 6-way hub the tips point inward and suggest 5- and 6-fold rosettes; next: real pattern families inspired by the Ali Qapu music-hall ceiling.
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.

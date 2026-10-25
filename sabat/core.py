@@ -183,9 +183,11 @@ def _panels(result):
     return [tuple(P[I[i]] for i in t) for t in g["tris"]]
 
 def girih_infill(tri, k=0.22, m_in=0.62):
-    """Six-point star inscribed in a triangle, built from first principles:
-    edge midpoints and points pulled toward the centroid alternate to form a
-    star polygon (the triangular unit of a 6-fold girih rosette)."""
+    """Girih star with three tips and three waists, inscribed in a triangle and
+    built from first principles: tips pulled slightly in from the corners and
+    waists pulled from the edge midpoints toward the centroid alternate to form
+    a six-vertex star polygon; around a hub the tips point inward and suggest a
+    girih rosette."""
     cx = sum(p[0] for p in tri) / 3; cy = sum(p[1] for p in tri) / 3
     out = []
     for i in range(3):
