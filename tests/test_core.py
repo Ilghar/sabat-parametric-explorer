@@ -24,3 +24,19 @@ class T(unittest.TestCase):
         s = svg(dome(SPEC)); self.assertIn("#4a3a5c", s); self.assertIn("ilghar.studio", s)
 
 if __name__ == "__main__": unittest.main()
+
+from sabat.core import girih_infill, geometry_json
+class Infill(unittest.TestCase):
+    def test_star_inside_triangle(self):
+        t = ((0, 0, 0), (10, 0, 0), (5, 8, 0))
+        st = girih_infill(t); self.assertEqual(len(st), 6)
+        def inside(p):
+            (x1,y1,_),(x2,y2,_),(x3,y3,_) = t
+            d = (y2-y3)*(x1-x3)+(x3-x2)*(y1-y3)
+            a = ((y2-y3)*(p[0]-x3)+(x3-x2)*(p[1]-y3))/d; b = ((y3-y1)*(p[0]-x3)+(x1-x3)*(p[1]-y3))/d
+            return a > 0 and b > 0 and 1-a-b > 0
+        self.assertTrue(all(inside(p) for p in st))
+    def test_svg_has_one_infill_per_panel(self):
+        r = dome(SPEC); self.assertEqual(svg(r).count("<polygon"), r["panels"])
+    def test_geometry_json(self):
+        g = geometry_json(dome(SPEC)); self.assertEqual(len(g["edges"]), 165); self.assertEqual(len(g["nodes"]), 61)

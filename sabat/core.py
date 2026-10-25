@@ -84,7 +84,7 @@ def dome(spec):
         "connectors_by_valence": [{"valence": k, "count": conn[k]} for k in sorted(conn)],
         "total_strut_length_m": round(sum(f["length_cm"] * f["count"] for f in families) / 100, 2),
         "_geom": {"pts": [tuple(round(R * c, 2) for c in pts[i]) for i in nodes],
-                  "idx": {n: k for k, n in enumerate(nodes)}, "edges": edges},
+                  "idx": {n: k for k, n in enumerate(nodes)}, "edges": edges, "tris": keep},
     }
 
 REQUIRED = {"name": str, "frequency": int, "diameter_cm": (int, float), "height_cm": (int, float)}
@@ -100,6 +100,10 @@ def validate(spec):
         if not 0 < spec["height_cm"] <= spec["diameter_cm"]: errs.append("height_cm must be in (0, diameter]")
     if errs: raise ValueError("; ".join(errs))
 
+def geometry_json(result):
+    g = result["_geom"]
+    return {"nodes": g["pts"], "edges": [[g["idx"][a], g["idx"][b]] for a, b in g["edges"]]}
+
 def public(result):
     return {k: v for k, v in result.items() if not k.startswith("_")}
 
@@ -112,8 +116,31 @@ def svg(result, size=520):
         (x1, y1, z1), (x2, y2, z2) = g["pts"][g["idx"][a]], g["pts"][g["idx"][b]]
         col = PALETTE["rose"] if (z1 + z2) / 2 > R * 0.5 else PALETTE["plum"]
         lines.append(f'<line x1="{c+x1*s:.1f}" y1="{c-y1*s:.1f}" x2="{c+x2*s:.1f}" y2="{c-y2*s:.1f}" stroke="{col}" stroke-width="1.4"/>')
+    inf = []
+    for k, t in enumerate(_panels(result)):
+        pts = " ".join(f"{c+x*s:.1f},{c-y*s:.1f}" for x, y in girih_infill(t))
+        col = PALETTE["rose"] if k % 2 else PALETTE["mauve"]
+        inf.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="0.22" stroke="{col}" stroke-width="0.6"/>')
+    lines = inf + lines
     nodes = "".join(f'<circle cx="{c+x*s:.1f}" cy="{c-y*s:.1f}" r="2.4" fill="{PALETTE["mauve"]}"/>' for x, y, _ in g["pts"])
     title = f'{result["name"]} · {result["frequency"]}V · Ø{result["diameter_cm"]:g} cm'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" width="{size}" height="{size}">'
             f'<rect width="100%" height="100%" fill="{PALETTE["canvas"]}"/>' + "".join(lines) + nodes +
             f'<text x="24" y="{size-20}" font-family="Jost, sans-serif" font-size="14" fill="{PALETTE["plum"]}">{title} — ilghar.studio</text></svg>')
+
+def _panels(result):
+    g = result["_geom"]; P = g["pts"]; I = g["idx"]
+    return [tuple(P[I[i]] for i in t) for t in g["tris"]]
+
+def girih_infill(tri, k=0.38):
+    """Six-point star inscribed in a triangle, built from first principles:
+    edge midpoints and points pulled toward the centroid alternate to form a
+    star polygon (the triangular unit of a 6-fold girih rosette)."""
+    cx = sum(p[0] for p in tri) / 3; cy = sum(p[1] for p in tri) / 3
+    out = []
+    for i in range(3):
+        a, b = tri[i], tri[(i + 1) % 3]
+        m = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+        v = (a[0] + (cx - a[0]) * k * 1.6, a[1] + (cy - a[1]) * k * 1.6)
+        out += [v, (m[0] + (cx - m[0]) * k, m[1] + (cy - m[1]) * k)]
+    return out  # 6 vertices, alternating vertex-point / midpoint-point

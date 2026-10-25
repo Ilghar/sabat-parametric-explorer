@@ -7,7 +7,7 @@ SÁBÁT is a modular pavilion (Ø 370 × H 230 cm; Texcycle yarn, recycled fabri
 - **Strut families:** how many module lengths there are, and how many of each to cut.
 - **Connectors by valence:** the 3D-printed and machined nodes that join 4, 5 or 6 struts.
 - **Built height, panel count and total strut length.**
-- **Plan-view SVG:** drawn in the ilghar.studio palette.
+- **Plan-view SVG** with girih-star panel infills, plus a drag-to-rotate 3D view in `site/index.html`.
 
 ## How it works
 
@@ -41,12 +41,12 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 Open `site/index.html` to see the plan view.
 
 ## Original vision: still to build
-- **Mosaic layer:** turn Iranian mosaic patterns (for example the Ali Qapu music-hall ceiling, 1597 CE) into panel infills.
+- **Mosaic layer (started):** each panel now carries a deterministic six-point girih star built from first principles; next: real pattern families inspired by the Ali Qapu music-hall ceiling (1597 CE).
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.
 - **Structural testing:** add statistical and structural testing.
-- **Interactive 3D view:** an interactive 3D page.
+- **Interactive 3D view (started):** `site/index.html` has a drag-to-rotate vanilla JS/SVG view; next: panel shading and textile envelope.
 - **"Gateways to heaven" study:** compare cosmological geometry across Chogha Zanbil, the Isfahan Friday Mosque, the Louvre pyramid and Notre-Dame.
 
 © ilghar.studio. All rights reserved. Private.
