@@ -1,0 +1,27 @@
+{
+ "credit": "ilghar.studio",
+ "status": "round 5 boards approved by owner 2026-10-25",
+ "boards": [
+  {
+   "path": "assets/board-light.svg",
+   "theme": "light",
+   "source_png_sha256": "ee6b49b31189fbd1f4851cf10ad919be87a3e498dcb35c52b7e8031df2fd446c",
+   "width": 2400,
+   "height": 1500,
+   "embedded": "JPEG q85 in SVG wrapper"
+  },
+  {
+   "path": "assets/board-dark.svg",
+   "theme": "dark",
+   "source_png_sha256": "87cbc6bb58b96f3305e84743c9676637937bd68156f6bf17da2d3044bd14f558",
+   "width": 2400,
+   "height": 1500,
+   "embedded": "JPEG q85 in SVG wrapper"
+  }
+ ],
+ "usage": "<picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/board-dark.svg\"><img src=\"assets/board-light.svg\"></picture>",
+ "format_note": "Raster boards are embedded inside SVG wrappers so they can be committed as text.",
+ "construction": "code-rendered construction drawing",
+ "photos": "Pavilion photographs are the owner's own, cropped from ilghar-studio public/viewers/portfolio-en/02.jpg (owner-approved; cropping and layout only).",
+ "superseded": "earlier illustration_v* and rejected hero options (not committed)"
+}
