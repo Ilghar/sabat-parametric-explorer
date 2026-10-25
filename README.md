@@ -55,12 +55,12 @@ For each panel, the tool reports:
 - `facing_centre`: the |cos| between the panel's normal and the direction to the centre of the floor.
 - `focus_proxy`: `infill_ratio` × `facing_centre`, a rough flag for panels that may focus sound.
 
-These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.757 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
+These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.7036 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
 Open `site/index.html` to see the plan view.
 
 ## Original vision: still to build
-- **Mosaic layer (started):** each panel now carries a deterministic six-point girih star built from first principles; next: real pattern families inspired by the Ali Qapu music-hall ceiling (1597 CE).
+- **Mosaic layer (started):** each panel now carries a deterministic three-pointed girih star (tips toward the corners, waists pulled to the centre) built from first principles; around each 5- and 6-way hub the tips meet as 5- and 6-fold rosettes; next: real pattern families inspired by the Ali Qapu music-hall ceiling (1597 CE).
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.

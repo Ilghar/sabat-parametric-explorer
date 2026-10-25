@@ -120,7 +120,7 @@ def svg(result, size=520):
     for k, t in enumerate(_panels(result)):
         pts = " ".join(f"{c+x*s:.1f},{c-y*s:.1f}" for x, y in girih_infill(t))
         col = PALETTE["rose"] if k % 2 else PALETTE["mauve"]
-        inf.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="0.22" stroke="{col}" stroke-width="0.6"/>')
+        inf.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="0.16" stroke="{col}" stroke-width="0.5" stroke-linejoin="miter"/>')
     lines = inf + lines
     nodes = "".join(f'<circle cx="{c+x*s:.1f}" cy="{c-y*s:.1f}" r="2.4" fill="{PALETTE["mauve"]}"/>' for x, y, _ in g["pts"])
     title = f'{result["name"]} · {result["frequency"]}V · Ø{result["diameter_cm"]:g} cm'
@@ -132,7 +132,7 @@ def _panels(result):
     g = result["_geom"]; P = g["pts"]; I = g["idx"]
     return [tuple(P[I[i]] for i in t) for t in g["tris"]]
 
-def girih_infill(tri, k=0.38):
+def girih_infill(tri, k=0.22, m_in=0.62):
     """Six-point star inscribed in a triangle, built from first principles:
     edge midpoints and points pulled toward the centroid alternate to form a
     star polygon (the triangular unit of a 6-fold girih rosette)."""
@@ -141,8 +141,8 @@ def girih_infill(tri, k=0.38):
     for i in range(3):
         a, b = tri[i], tri[(i + 1) % 3]
         m = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
-        v = (a[0] + (cx - a[0]) * k * 1.6, a[1] + (cy - a[1]) * k * 1.6)
-        out += [v, (m[0] + (cx - m[0]) * k, m[1] + (cy - m[1]) * k)]
+        v = (a[0] + (cx - a[0]) * k, a[1] + (cy - a[1]) * k)  # tip toward vertex
+        out += [v, (m[0] + (cx - m[0]) * m_in, m[1] + (cy - m[1]) * m_in)]  # waist toward centre
     return out  # 6 vertices, alternating vertex-point / midpoint-point
 
 def _sub(a, b): return tuple(x - y for x, y in zip(a, b))
@@ -154,7 +154,7 @@ def _area(pts):  # planar polygon area in 3D via fan
         c = _cross(_sub(pts[i], pts[0]), _sub(pts[i + 1], pts[0])); s = tuple(x + y for x, y in zip(s, c))
     return 0.5 * math.sqrt(_dot(s, s))
 
-def panel_proxies(result, k=0.38):
+def panel_proxies(result, k=0.22):
     """HEURISTIC, NOT A MEASURED ACOUSTIC RESULT.
     infill_ratio  = star area / panel area (share of panel that is mosaic infill)
     openness      = 1 - infill_ratio (geometric open share of the panel)
@@ -174,13 +174,13 @@ def panel_proxies(result, k=0.38):
                     "facing_centre": round(f, 4), "focus_proxy": round(r * f, 4)})
     return out
 
-def _star3d(tri, k):
+def _star3d(tri, k, m_in=0.62):
     c = tuple(sum(p[j] for p in tri) / 3 for j in range(3)); out = []
     for i in range(3):
         a, b = tri[i], tri[(i + 1) % 3]
         m = tuple((a[j] + b[j]) / 2 for j in range(3))
-        out += [tuple(a[j] + (c[j] - a[j]) * k * 1.6 for j in range(3)),
-                tuple(m[j] + (c[j] - m[j]) * k for j in range(3))]
+        out += [tuple(a[j] + (c[j] - a[j]) * k for j in range(3)),
+                tuple(m[j] + (c[j] - m[j]) * m_in for j in range(3))]
     return out
 
 def connector_table(result):

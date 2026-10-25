@@ -58,3 +58,9 @@ class Proxies(unittest.TestCase):
     def test_full_sphere_gaps_sum_360(self):
         t = connector_table(dome({"name": "s", "frequency": 2, "diameter_cm": 100, "height_cm": 100}))
         five = [x for x in t if x["valence"] == 5][0]; self.assertTrue(five["angle_between_struts_deg"][1] < 73)
+
+class StarShape(unittest.TestCase):
+    def test_star_is_concave_tips_out_waists_in(self):
+        t = ((0, 0, 0), (10, 0, 0), (5, 8.66, 0)); st = girih_infill(t)
+        c = (5, 8.66 / 3); d = [math.dist(p, c) for p in st]
+        self.assertTrue(min(d[0::2]) > 1.5 * max(d[1::2]))
