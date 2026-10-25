@@ -4,7 +4,7 @@ Builds a frequency-v icosahedral geodesic sphere, cuts it to a dome of a
 target height/diameter, groups struts into length families (=modules to
 fabricate) and counts node valences (=3D-printed / machined connectors).
 """
-import json, math
+import html, json, math
 
 PHI = (1 + 5 ** 0.5) / 2
 
@@ -61,22 +61,44 @@ def dome(spec):
     pts, tris = geodesic(spec["frequency"])
     R = spec["diameter_cm"] / 2
     zcut = 1 - spec["height_cm"] / R  # dome measured from apex down
-    keep = [t for t in tris if sum(pts[i][2] for i in t) / 3 >= zcut - 1e-9]
+    def cut(zc):
+        k = [t for t in tris if sum(pts[i][2] for i in t) / 3 >= zc - 1e-9]
+        if not k: return k, None
+        zs = [pts[i][2] for t in k for i in t]
+        return k, R * (max(zs) - min(zs))
+    # choose the panel-row cut whose built height is closest to the target
+    centroids = sorted({round(sum(pts[i][2] for i in t) / 3, 9) for t in tris})
+    best = None
+    for zc in centroids:
+        k, h = cut(zc)
+        if h is not None and (best is None or abs(h - spec["height_cm"]) < abs(best[1] - spec["height_cm"]) - 1e-9):
+            best = (k, h)
+    if best and best[1] > 2 * spec["height_cm"]:
+        raise ValueError(f"height_cm {spec['height_cm']} is too small for frequency {spec['frequency']} at diameter {spec['diameter_cm']}: the lowest panel row is {best[1]:.1f} cm tall")
+    keep = best[0] if best and best[1] >= 0.5 * spec["height_cm"] else cut(zcut)[0]
+    if not keep:
+        raise ValueError(f"height_cm {spec['height_cm']} is too small for frequency {spec['frequency']}: no complete panel row fits; increase height or frequency")
     edges = sorted({tuple(sorted((a, b))) for t in keep for a, b in ((t[0], t[1]), (t[1], t[2]), (t[0], t[2]))})
     nodes = sorted({i for e in edges for i in e})
     zmin = min(pts[i][2] for i in nodes)
-    fam = {}
-    for a, b in edges:
-        L = round(R * math.dist(pts[a], pts[b]), 1); fam[L] = fam.get(L, 0) + 1
-    labels = "ABCDEFGHIJKLMNOP"
-    families = [{"id": labels[i], "length_cm": L, "count": fam[L]} for i, L in enumerate(sorted(fam))]
+    raw = sorted(R * math.dist(pts[a], pts[b]) for a, b in edges)
+    groups = []  # cluster by relative tolerance, not by rounding
+    for L in raw:
+        if groups and L - groups[-1][0] <= 1e-6 * max(1.0, L): groups[-1].append(L)
+        else: groups.append([L])
+    families = [{"id": _label(i), "length_cm": round(sum(g) / len(g), 1), "count": len(g)} for i, g in enumerate(groups)]
     val = {}
     for a, b in edges:
         val[a] = val.get(a, 0) + 1; val[b] = val.get(b, 0) + 1
     conn = {}
     for n in nodes: conn[val[n]] = conn.get(val[n], 0) + 1
     real_h = round(R * (max(pts[i][2] for i in nodes) - zmin), 1)
+    warnings = []
+    dev = (real_h - spec["height_cm"]) / spec["height_cm"]
+    if abs(dev) > 0.05:
+        warnings.append(f"built height {real_h} cm deviates {dev:+.1%} from target {spec['height_cm']} cm (cut snaps to panel rows)")
     return {
+        "warnings": warnings,
         "name": spec["name"], "frequency": spec["frequency"],
         "diameter_cm": spec["diameter_cm"], "target_height_cm": spec["height_cm"],
         "built_height_cm": real_h, "nodes": len(nodes), "struts": len(edges), "panels": len(keep),
@@ -89,14 +111,25 @@ def dome(spec):
 
 REQUIRED = {"name": str, "frequency": int, "diameter_cm": (int, float), "height_cm": (int, float)}
 
+def _label(i):
+    s = ""
+    i += 1
+    while i: i, r = divmod(i - 1, 26); s = chr(65 + r) + s
+    return s
+
 def validate(spec):
+    if not isinstance(spec, dict):
+        raise ValueError(f"spec must be a JSON object, got {type(spec).__name__}")
     errs = []
     for k, t in REQUIRED.items():
         if k not in spec: errs.append(f"missing {k}")
         elif not isinstance(spec[k], t) or isinstance(spec[k], bool): errs.append(f"{k}: wrong type")
     if not errs:
         if not 1 <= spec["frequency"] <= 8: errs.append("frequency must be 1..8")
-        if spec["diameter_cm"] <= 0: errs.append("diameter_cm must be > 0")
+        for k in ("diameter_cm", "height_cm"):
+            if not math.isfinite(spec[k]): errs.append(f"{k} must be finite")
+        if not errs and not 10 <= spec["diameter_cm"] <= 100000: errs.append("diameter_cm must be in [10, 100000]")
+        if not spec["name"].strip() or len(spec["name"]) > 200: errs.append("name must be 1..200 chars")
         if not 0 < spec["height_cm"] <= spec["diameter_cm"]: errs.append("height_cm must be in (0, diameter]")
     if errs: raise ValueError("; ".join(errs))
 
@@ -109,7 +142,24 @@ def public(result):
 
 PALETTE = {"canvas": "#f3f1f6", "plum": "#4a3a5c", "rose": "#c97a98", "mauve": "#a394ae"}
 
+CSS_VARS = {"#f3f1f6": "--canvas", "#4a3a5c": "--ink", "#c97a98": "--accent", "#a394ae": "--subtle"}
+
+def _themeable(svg_text):
+    """Turn palette attributes into CSS-variable styles with hex fallbacks, so the
+    standalone file keeps the light palette and a themed page can restyle it."""
+    import re
+    _t = re.sub(r'(fill|stroke)="(#[0-9a-f]{6})"',
+                  lambda m: f'style="{m.group(1)}:var({CSS_VARS[m.group(2)]},{m.group(2)})"' if m.group(2) in CSS_VARS else m.group(0),
+                  svg_text)
+    while True:  # merge duplicate style attributes inside one tag
+        new = re.sub(r'style="([^"]*)"([^<>]*?) style="([^"]*)"', r'style="\1;\3"\2', svg_text if False else _t)
+        if new == _t: return new
+        _t = new
+
 def svg(result, size=520):
+    return _themeable(_svg(result, size))
+
+def _svg(result, size=520):
     g = result["_geom"]; R = result["diameter_cm"] / 2; s = (size - 80) / (2 * R); c = size / 2
     lines = []
     for a, b in g["edges"]:
@@ -123,7 +173,7 @@ def svg(result, size=520):
         inf.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="0.16" stroke="{col}" stroke-width="0.5" stroke-linejoin="miter"/>')
     lines = inf + lines
     nodes = "".join(f'<circle cx="{c+x*s:.1f}" cy="{c-y*s:.1f}" r="2.4" fill="{PALETTE["mauve"]}"/>' for x, y, _ in g["pts"])
-    title = f'{result["name"]} · {result["frequency"]}V · Ø{result["diameter_cm"]:g} cm'
+    title = html.escape(result["name"]) + f' · {result["frequency"]}V · Ø{result["diameter_cm"]:g} cm'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" width="{size}" height="{size}">'
             f'<rect width="100%" height="100%" fill="{PALETTE["canvas"]}"/>' + "".join(lines) + nodes +
             f'<text x="24" y="{size-20}" font-family="Jost, sans-serif" font-size="14" fill="{PALETTE["plum"]}">{title} — ilghar.studio</text></svg>')

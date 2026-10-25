@@ -57,6 +57,15 @@ For each panel, the tool reports:
 
 These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.7036 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
+### Robustness
+- **Height cut:** the tool picks the panel-row cut whose built height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
+- **Input checks:** it rejects specs that aren't JSON objects, numbers that are NaN, infinite or out of range (diameter 10–100,000 cm), and empty names.
+- **Safe output:** the name is escaped in the SVG, and a missing or invalid JSON file gives a clear error message.
+- **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
+
+### Themes
+`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`, and a toggle button switches themes and remembers your choice (accessible via `aria-pressed`). The plan SVG and the 3D view are coloured through CSS variables. The tests check WCAG AA contrast for text and the 3:1 minimum for graphics.
+
 Open `site/index.html` to see the plan view.
 
 ## Original vision: still to build
