@@ -1,0 +1,4 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"SÁBÁT pavilion spec","type":"object",
+ "required":["name","frequency","diameter_cm","height_cm"],
+ "properties":{"name":{"type":"string"},"frequency":{"type":"integer","minimum":1,"maximum":8},
+ "diameter_cm":{"type":"number","exclusiveMinimum":0},"height_cm":{"type":"number","exclusiveMinimum":0}}}

@@ -1,0 +1,42 @@
+{
+  "name": "SÁBÁT Pavilion",
+  "frequency": 3,
+  "diameter_cm": 370,
+  "target_height_cm": 230,
+  "built_height_cm": 219.7,
+  "nodes": 61,
+  "struts": 165,
+  "panels": 105,
+  "strut_families": [
+    {
+      "id": "A",
+      "length_cm": 64.5,
+      "count": 30
+    },
+    {
+      "id": "B",
+      "length_cm": 74.7,
+      "count": 55
+    },
+    {
+      "id": "C",
+      "length_cm": 76.3,
+      "count": 80
+    }
+  ],
+  "connectors_by_valence": [
+    {
+      "valence": 4,
+      "count": 15
+    },
+    {
+      "valence": 5,
+      "count": 6
+    },
+    {
+      "valence": 6,
+      "count": 40
+    }
+  ],
+  "total_strut_length_m": 121.47
+}
