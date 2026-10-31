@@ -66,7 +66,7 @@ def dome(spec):
         if not k: return k, None
         zs = [pts[i][2] for t in k for i in t]
         return k, R * (max(zs) - min(zs))
-    # choose the panel-row cut whose built height is closest to the target
+    # choose the panel-row cut whose modelled height is closest to the target
     centroids = sorted({round(sum(pts[i][2] for i in t) / 3, 9) for t in tris})
     best = None
     for zc in centroids:
@@ -96,12 +96,12 @@ def dome(spec):
     warnings = []
     dev = (real_h - spec["height_cm"]) / spec["height_cm"]
     if abs(dev) > 0.05:
-        warnings.append(f"built height {real_h} cm deviates {dev:+.1%} from target {spec['height_cm']} cm (cut snaps to panel rows)")
+        warnings.append(f"modelled height {real_h} cm deviates {dev:+.1%} from target {spec['height_cm']} cm (cut snaps to panel rows)")
     return {
         "warnings": warnings,
         "name": spec["name"], "frequency": spec["frequency"],
         "diameter_cm": spec["diameter_cm"], "target_height_cm": spec["height_cm"],
-        "built_height_cm": real_h, "nodes": len(nodes), "struts": len(edges), "panels": len(keep),
+        "modelled_height_cm": real_h, "nodes": len(nodes), "struts": len(edges), "panels": len(keep),
         "strut_families": families,
         "connectors_by_valence": [{"valence": k, "count": conn[k]} for k in sorted(conn)],
         "total_strut_length_m": round(sum(f["length_cm"] * f["count"] for f in families) / 100, 2),
@@ -166,12 +166,6 @@ def _svg(result, size=520):
         (x1, y1, z1), (x2, y2, z2) = g["pts"][g["idx"][a]], g["pts"][g["idx"][b]]
         col = PALETTE["rose"] if (z1 + z2) / 2 > R * 0.5 else PALETTE["plum"]
         lines.append(f'<line x1="{c+x1*s:.1f}" y1="{c-y1*s:.1f}" x2="{c+x2*s:.1f}" y2="{c-y2*s:.1f}" stroke="{col}" stroke-width="1.4"/>')
-    inf = []
-    for k, t in enumerate(_panels(result)):
-        pts = " ".join(f"{c+x*s:.1f},{c-y*s:.1f}" for x, y in girih_infill(t))
-        col = PALETTE["rose"] if k % 2 else PALETTE["mauve"]
-        inf.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="0.16" stroke="{col}" stroke-width="0.5" stroke-linejoin="miter"/>')
-    lines = inf + lines
     nodes = "".join(f'<circle cx="{c+x*s:.1f}" cy="{c-y*s:.1f}" r="2.4" fill="{PALETTE["mauve"]}"/>' for x, y, _ in g["pts"])
     title = html.escape(result["name"]) + f' · {result["frequency"]}V · Ø{result["diameter_cm"]:g} cm'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" width="{size}" height="{size}">'
@@ -182,57 +176,20 @@ def _panels(result):
     g = result["_geom"]; P = g["pts"]; I = g["idx"]
     return [tuple(P[I[i]] for i in t) for t in g["tris"]]
 
-def girih_infill(tri, k=0.22, m_in=0.62):
-    """Girih star with three tips and three waists, inscribed in a triangle and
-    built from first principles: tips pulled slightly in from the corners and
-    waists pulled from the edge midpoints toward the centroid alternate to form
-    a six-vertex star polygon; around a hub the tips point inward and suggest a
-    girih rosette."""
-    cx = sum(p[0] for p in tri) / 3; cy = sum(p[1] for p in tri) / 3
-    out = []
-    for i in range(3):
-        a, b = tri[i], tri[(i + 1) % 3]
-        m = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
-        v = (a[0] + (cx - a[0]) * k, a[1] + (cy - a[1]) * k)  # tip toward vertex
-        out += [v, (m[0] + (cx - m[0]) * m_in, m[1] + (cy - m[1]) * m_in)]  # waist toward centre
-    return out  # 6 vertices, alternating vertex-point / midpoint-point
-
 def _sub(a, b): return tuple(x - y for x, y in zip(a, b))
 def _cross(a, b): return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
 def _dot(a, b): return sum(x * y for x, y in zip(a, b))
-def _area(pts):  # planar polygon area in 3D via fan
-    s = (0.0, 0.0, 0.0)
-    for i in range(1, len(pts) - 1):
-        c = _cross(_sub(pts[i], pts[0]), _sub(pts[i + 1], pts[0])); s = tuple(x + y for x, y in zip(s, c))
-    return 0.5 * math.sqrt(_dot(s, s))
-
-def panel_proxies(result, k=0.22):
+def panel_proxies(result):
     """HEURISTIC, NOT A MEASURED ACOUSTIC RESULT.
-    infill_ratio  = star area / panel area (share of panel that is mosaic infill)
-    openness      = 1 - infill_ratio (geometric open share of the panel)
     facing_centre = |cos| between panel normal and the direction to the floor
-                    centre of the dome (1 = panel faces the listener spot)
-    focus_proxy   = infill_ratio * facing_centre (a rough reflection-focus flag)"""
+                    centre of the dome (1 = panel faces the listener spot)"""
     out = []; zfloor = min(p[2] for p in result["_geom"]["pts"])
     for i, t in enumerate(_panels(result)):
-        star = _star3d(t, k)
-        a_p, a_s = _area(t), _area(star)
         n = _cross(_sub(t[1], t[0]), _sub(t[2], t[0])); nl = math.sqrt(_dot(n, n))
         c = tuple(sum(p[j] for p in t) / 3 for j in range(3))
         d = _sub((0.0, 0.0, zfloor), c); dl = math.sqrt(_dot(d, d))
         f = abs(_dot(n, d)) / (nl * dl)
-        r = a_s / a_p
-        out.append({"panel": i, "infill_ratio": round(r, 4), "openness": round(1 - r, 4),
-                    "facing_centre": round(f, 4), "focus_proxy": round(r * f, 4)})
-    return out
-
-def _star3d(tri, k, m_in=0.62):
-    c = tuple(sum(p[j] for p in tri) / 3 for j in range(3)); out = []
-    for i in range(3):
-        a, b = tri[i], tri[(i + 1) % 3]
-        m = tuple((a[j] + b[j]) / 2 for j in range(3))
-        out += [tuple(a[j] + (c[j] - a[j]) * k for j in range(3)),
-                tuple(m[j] + (c[j] - m[j]) * m_in for j in range(3))]
+        out.append({"panel": i, "facing_centre": round(f, 4)})
     return out
 
 def connector_table(result):

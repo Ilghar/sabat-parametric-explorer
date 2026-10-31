@@ -2,12 +2,11 @@
 
 *by ilghar.studio*
 
-SÁBÁT is a modular pavilion (Ø 370 × H 230 cm; Texcycle yarn, recycled fabric, wood, metal, PLA) that brings Iranian mosaic geometry together with Buckminster Fuller's geodesic domes. It is a space for hospitality, care and shared ritual, rooted in Zoroastrian philosophy. This repository is its **parametric explorer**. You give it a pavilion spec, and it works out the module system you'd need to fabricate:
+SÁBÁT is a modular pavilion (Ø 370 × H 230 cm; Texcycle yarn, recycled fabric, wood, metal, PLA) built on a geodesic dome. It is a space for hospitality, care and shared ritual, rooted in Zoroastrian philosophy. This repository is its **parametric explorer**. You give it a pavilion spec, and it works out the module system you'd need to fabricate:
 
 - **Strut families:** how many module lengths there are, and how many of each to cut.
 - **Connectors by valence:** the 3D-printed and machined nodes that join 4, 5 or 6 struts.
-- **Built height, panel count and total strut length.**
-- **Plan-view SVG** with girih-star panel infills, plus a drag-to-rotate 3D view in `site/index.html`.
+- **Modelled height, panel count and total strut length.**
 
 ## How it works
 
@@ -32,7 +31,7 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 | | |
 |---|---|
-| built height | 219.7 cm |
+| height | built pavilion H 230 cm; the model gives 219.7 cm, the nearest full panel row (`sabat/core.py:95`) |
 | nodes / struts / panels | 61 / 165 / 105 |
 | strut families | A 64.5 cm × 30 · B 74.7 cm × 55 · C 76.3 cm × 80 |
 | connectors | 15 × 4-way · 6 × 5-way · 40 × 6-way |
@@ -46,19 +45,16 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 | 5-way | 6 | 10.03–10.04° | 71.99–72.01° |
 | 6-way | 40 | 10.03–11.91° | 55.68–62.17° |
 
-### Panel openness / acoustic proxy: **heuristic, not a measured acoustic result**
+### Panel acoustic proxy: **heuristic, not a measured acoustic result**
 
 For each panel, the tool reports:
 
-- `infill_ratio`: the girih star's area divided by the panel's area.
-- `openness`: 1 − `infill_ratio`.
 - `facing_centre`: the |cos| between the panel's normal and the direction to the centre of the floor.
-- `focus_proxy`: `infill_ratio` × `facing_centre`, a rough flag for panels that may focus sound.
 
-These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.7036 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
+These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
 ### Robustness
-- **Height cut:** the tool picks the panel-row cut whose built height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
+- **Height cut:** the tool picks the panel-row cut whose modelled height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
 - **Input checks:** it rejects specs that aren't JSON objects, numbers that are NaN, infinite or out of range (diameter 10–100,000 cm), and empty names.
 - **Safe output:** the name is escaped in the SVG, and a missing or invalid JSON file gives a clear error message.
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
@@ -74,7 +70,6 @@ Open `site/index.html` to see the plan view.
 `tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
 
 ## Original vision: still to build
-- **Mosaic layer (started):** each panel now carries a deterministic girih star with three tips and three waists (tips toward the corners, waists pulled toward the centre), built from first principles; around each 5- and 6-way hub the tips point inward and suggest 5- and 6-fold rosettes; next: real pattern families inspired by the ceiling of the Ali Qapu music room, Isfahan (c. 1615, under Shah ʿAbbas I) [1].
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.

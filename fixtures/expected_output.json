@@ -4,7 +4,7 @@
   "frequency": 3,
   "diameter_cm": 370,
   "target_height_cm": 230,
-  "built_height_cm": 219.7,
+  "modelled_height_cm": 219.7,
   "nodes": 61,
   "struts": 165,
   "panels": 105,
@@ -80,743 +80,427 @@
   ],
   "panel_proxy_HEURISTIC": {
     "note": "geometric heuristic, not a measured acoustic result",
-    "mean_openness": 0.7036,
     "mean_facing_centre": 0.988,
     "panels": [
       {
         "panel": 0,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9985,
-        "focus_proxy": 0.2959
+        "facing_centre": 0.9985
       },
       {
         "panel": 1,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9976,
-        "focus_proxy": 0.2957
+        "facing_centre": 0.9976
       },
       {
         "panel": 2,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 3,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 4,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 5,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 6,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 7,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9916,
-        "focus_proxy": 0.2939
+        "facing_centre": 0.9916
       },
       {
         "panel": 8,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 9,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9985,
-        "focus_proxy": 0.2959
+        "facing_centre": 0.9985
       },
       {
         "panel": 10,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9976,
-        "focus_proxy": 0.2957
+        "facing_centre": 0.9976
       },
       {
         "panel": 11,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 12,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 13,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 14,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 15,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 16,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9916,
-        "focus_proxy": 0.2939
+        "facing_centre": 0.9916
       },
       {
         "panel": 17,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 18,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9985,
-        "focus_proxy": 0.2959
+        "facing_centre": 0.9985
       },
       {
         "panel": 19,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9976,
-        "focus_proxy": 0.2957
+        "facing_centre": 0.9976
       },
       {
         "panel": 20,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 21,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 22,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 23,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 24,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 25,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9916,
-        "focus_proxy": 0.2939
+        "facing_centre": 0.9916
       },
       {
         "panel": 26,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 27,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9985,
-        "focus_proxy": 0.2959
+        "facing_centre": 0.9985
       },
       {
         "panel": 28,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9976,
-        "focus_proxy": 0.2957
+        "facing_centre": 0.9976
       },
       {
         "panel": 29,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 30,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 31,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 32,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 33,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 34,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9916,
-        "focus_proxy": 0.2939
+        "facing_centre": 0.9916
       },
       {
         "panel": 35,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 36,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9985,
-        "focus_proxy": 0.2959
+        "facing_centre": 0.9985
       },
       {
         "panel": 37,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9976,
-        "focus_proxy": 0.2957
+        "facing_centre": 0.9976
       },
       {
         "panel": 38,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 39,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 40,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 41,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.996,
-        "focus_proxy": 0.2952
+        "facing_centre": 0.996
       },
       {
         "panel": 42,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.993,
-        "focus_proxy": 0.2943
+        "facing_centre": 0.993
       },
       {
         "panel": 43,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9916,
-        "focus_proxy": 0.2939
+        "facing_centre": 0.9916
       },
       {
         "panel": 44,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9925,
-        "focus_proxy": 0.2942
+        "facing_centre": 0.9925
       },
       {
         "panel": 45,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 46,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 47,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 48,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9822,
-        "focus_proxy": 0.2911
+        "facing_centre": 0.9822
       },
       {
         "panel": 49,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9865,
-        "focus_proxy": 0.2924
+        "facing_centre": 0.9865
       },
       {
         "panel": 50,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 51,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 52,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 53,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 54,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 55,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 56,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9822,
-        "focus_proxy": 0.2911
+        "facing_centre": 0.9822
       },
       {
         "panel": 57,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9865,
-        "focus_proxy": 0.2924
+        "facing_centre": 0.9865
       },
       {
         "panel": 58,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 59,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 60,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 61,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 62,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 63,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 64,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9822,
-        "focus_proxy": 0.2911
+        "facing_centre": 0.9822
       },
       {
         "panel": 65,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9865,
-        "focus_proxy": 0.2924
+        "facing_centre": 0.9865
       },
       {
         "panel": 66,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 67,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 68,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 69,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 70,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 71,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 72,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9822,
-        "focus_proxy": 0.2911
+        "facing_centre": 0.9822
       },
       {
         "panel": 73,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9865,
-        "focus_proxy": 0.2924
+        "facing_centre": 0.9865
       },
       {
         "panel": 74,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 75,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 76,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 77,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 78,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 79,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 80,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9822,
-        "focus_proxy": 0.2911
+        "facing_centre": 0.9822
       },
       {
         "panel": 81,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9865,
-        "focus_proxy": 0.2924
+        "facing_centre": 0.9865
       },
       {
         "panel": 82,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9849,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9849
       },
       {
         "panel": 83,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9827,
-        "focus_proxy": 0.2913
+        "facing_centre": 0.9827
       },
       {
         "panel": 84,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9848,
-        "focus_proxy": 0.2919
+        "facing_centre": 0.9848
       },
       {
         "panel": 85,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9811,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9811
       },
       {
         "panel": 86,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9816,
-        "focus_proxy": 0.291
+        "facing_centre": 0.9816
       },
       {
         "panel": 87,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9803,
-        "focus_proxy": 0.2906
+        "facing_centre": 0.9803
       },
       {
         "panel": 88,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9812,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9812
       },
       {
         "panel": 89,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9811,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9811
       },
       {
         "panel": 90,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9816,
-        "focus_proxy": 0.291
+        "facing_centre": 0.9816
       },
       {
         "panel": 91,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9803,
-        "focus_proxy": 0.2906
+        "facing_centre": 0.9803
       },
       {
         "panel": 92,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9812,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9812
       },
       {
         "panel": 93,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9811,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9811
       },
       {
         "panel": 94,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9816,
-        "focus_proxy": 0.291
+        "facing_centre": 0.9816
       },
       {
         "panel": 95,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9803,
-        "focus_proxy": 0.2906
+        "facing_centre": 0.9803
       },
       {
         "panel": 96,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9811,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9811
       },
       {
         "panel": 97,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9812,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9812
       },
       {
         "panel": 98,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9816,
-        "focus_proxy": 0.291
+        "facing_centre": 0.9816
       },
       {
         "panel": 99,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9803,
-        "focus_proxy": 0.2906
+        "facing_centre": 0.9803
       },
       {
         "panel": 100,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9811,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9811
       },
       {
         "panel": 101,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9812,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9812
       },
       {
         "panel": 102,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9816,
-        "focus_proxy": 0.291
+        "facing_centre": 0.9816
       },
       {
         "panel": 103,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9803,
-        "focus_proxy": 0.2906
+        "facing_centre": 0.9803
       },
       {
         "panel": 104,
-        "infill_ratio": 0.2964,
-        "openness": 0.7036,
-        "facing_centre": 0.9812,
-        "focus_proxy": 0.2908
+        "facing_centre": 0.9812
       }
     ]
   }

@@ -17,7 +17,7 @@ def main(argv=None):
     except ValueError as e:
         print(f"invalid spec: {e}", file=sys.stderr); return 2
     out = public(r); out["connector_table"] = connector_table(r)
-    pp = panel_proxies(r); out["panel_proxy_HEURISTIC"] = {"note": "geometric heuristic, not a measured acoustic result", "mean_openness": round(sum(x["openness"] for x in pp)/len(pp),4), "mean_facing_centre": round(sum(x["facing_centre"] for x in pp)/len(pp),4), "panels": pp}
+    pp = panel_proxies(r); out["panel_proxy_HEURISTIC"] = {"note": "geometric heuristic, not a measured acoustic result", "mean_facing_centre": round(sum(x["facing_centre"] for x in pp)/len(pp),4), "panels": pp}
     for w in r["warnings"]: print(f"warning: {w}", file=sys.stderr)
     print(json.dumps(out, indent=2, ensure_ascii=False))
     if a.svg:

@@ -14,7 +14,7 @@ class T(unittest.TestCase):
     def test_pavilion_deterministic(self):
         a, b = public(dome(SPEC)), public(dome(SPEC))
         self.assertEqual(a, b)
-        self.assertLessEqual(a["built_height_cm"], 260)
+        self.assertLessEqual(a["modelled_height_cm"], 260)
         self.assertEqual(sum(f["count"] for f in a["strut_families"]), a["struts"])
         self.assertEqual(len(a["strut_families"]), 3)  # 3V sphere has 3 strut lengths
     def test_invalid(self):
@@ -25,19 +25,11 @@ class T(unittest.TestCase):
 
 if __name__ == "__main__": unittest.main()
 
-from sabat.core import girih_infill, geometry_json
-class Infill(unittest.TestCase):
-    def test_star_inside_triangle(self):
-        t = ((0, 0, 0), (10, 0, 0), (5, 8, 0))
-        st = girih_infill(t); self.assertEqual(len(st), 6)
-        def inside(p):
-            (x1,y1,_),(x2,y2,_),(x3,y3,_) = t
-            d = (y2-y3)*(x1-x3)+(x3-x2)*(y1-y3)
-            a = ((y2-y3)*(p[0]-x3)+(x3-x2)*(p[1]-y3))/d; b = ((y3-y1)*(p[0]-x3)+(x1-x3)*(p[1]-y3))/d
-            return a > 0 and b > 0 and 1-a-b > 0
-        self.assertTrue(all(inside(p) for p in st))
-    def test_svg_has_one_infill_per_panel(self):
-        r = dome(SPEC); self.assertEqual(svg(r).count("<polygon"), r["panels"])
+from sabat.core import geometry_json
+class PlanView(unittest.TestCase):
+    def test_svg_draws_only_the_geodesic_base(self):
+        r = dome(SPEC); s = svg(r)
+        self.assertEqual(s.count("<polygon"), 0); self.assertEqual(s.count("<line"), r["struts"])
     def test_geometry_json(self):
         g = geometry_json(dome(SPEC)); self.assertEqual(len(g["edges"]), 165); self.assertEqual(len(g["nodes"]), 61)
 
@@ -47,7 +39,6 @@ class Proxies(unittest.TestCase):
         r = dome(SPEC); p = panel_proxies(r)
         self.assertEqual(len(p), r["panels"]); self.assertEqual(p, panel_proxies(dome(SPEC)))
         for x in p:
-            self.assertTrue(0 < x["infill_ratio"] < 1); self.assertAlmostEqual(x["infill_ratio"] + x["openness"], 1, places=3)
             self.assertTrue(0 <= x["facing_centre"] <= 1)
     def test_connector_table(self):
         r = dome(SPEC); t = connector_table(r)
@@ -58,9 +49,3 @@ class Proxies(unittest.TestCase):
     def test_full_sphere_gaps_sum_360(self):
         t = connector_table(dome({"name": "s", "frequency": 2, "diameter_cm": 100, "height_cm": 100}))
         five = [x for x in t if x["valence"] == 5][0]; self.assertTrue(five["angle_between_struts_deg"][1] < 73)
-
-class StarShape(unittest.TestCase):
-    def test_star_is_concave_tips_out_waists_in(self):
-        t = ((0, 0, 0), (10, 0, 0), (5, 8.66, 0)); st = girih_infill(t)
-        c = (5, 8.66 / 3); d = [math.dist(p, c) for p in st]
-        self.assertTrue(min(d[0::2]) > 1.5 * max(d[1::2]))
