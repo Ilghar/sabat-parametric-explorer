@@ -1,27 +1,27 @@
 {
  "credit": "ilghar.studio",
- "status": "round 5 boards approved by owner 2026-10-25",
+ "status": "boards re-exported 2026-10-31 in the studio palette (text plum #4a3a5c / ink #f4eef3, accent #c97a98 / #e8a8bc, no blue)",
  "boards": [
   {
    "path": "assets/board-light.svg",
    "theme": "light",
-   "source_png_sha256": "ee6b49b31189fbd1f4851cf10ad919be87a3e498dcb35c52b7e8031df2fd446c",
+   "source_png_sha256": "3bf5c0f9836f531702045dab62c6fc3211db7777d3951bc48185a00af0ad2cf8",
    "width": 2400,
    "height": 1500,
-   "embedded": "JPEG q85 in SVG wrapper"
+   "embedded": "lossless PNG (source_png_sha256) in SVG wrapper"
   },
   {
    "path": "assets/board-dark.svg",
    "theme": "dark",
-   "source_png_sha256": "87cbc6bb58b96f3305e84743c9676637937bd68156f6bf17da2d3044bd14f558",
+   "source_png_sha256": "6b3b8c9708f12efab5a5bf0a142f51fbfa79b6904e3d2948bdb5fd15be731264",
    "width": 2400,
    "height": 1500,
-   "embedded": "JPEG q85 in SVG wrapper"
+   "embedded": "lossless PNG (source_png_sha256) in SVG wrapper"
   }
  ],
  "usage": "<picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/board-dark.svg\"><img src=\"assets/board-light.svg\"></picture>",
  "format_note": "Raster boards are embedded inside SVG wrappers so they can be committed as text.",
- "construction": "code-rendered construction drawing",
- "photos": "Pavilion photographs are the owner's own, cropped from ilghar-studio public/viewers/portfolio-en/02.jpg (owner-approved; cropping and layout only).",
+ "construction": "none; the board uses photographs only",
+ "photos": "Pavilion photographs are the owner's own (front view, inside, side back view), cropped from ilghar-studio public/viewers/portfolio-en/02.jpg; cropping, scaling and layout only, no generated imagery.",
  "superseded": "earlier illustration_v* and rejected hero options (not committed)"
 }
