@@ -31,7 +31,7 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 | | |
 |---|---|
-| height | Built pavilion H 230 cm; model height 219.7 cm, the panel-row cut closest to it |
+| height | Built pavilion H 230 cm; model height 219.7 cm, the panel-row cut closest to it (`sabat/core.py:95`) |
 | nodes / struts / panels | 61 / 165 / 105 |
 | strut families | A 64.5 cm × 30 · B 74.7 cm × 55 · C 76.3 cm × 80 |
 | connectors | 15 × 4-way · 6 × 5-way · 40 × 6-way |
@@ -49,9 +49,9 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 For each panel, the tool reports:
 
-- `facing_centre`: the |cos| between the panel's normal and the direction to the centre of the floor.
+- `facing_centre`: the |cos| between the panel's normal and the direction to the center of the floor.
 
-These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
+These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean facing_centre is 0.988. Facing is almost uniform because the floor center sits close to the sphere's center. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
 ### Robustness
 - **Height cut:** the tool picks the panel-row cut whose model height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
