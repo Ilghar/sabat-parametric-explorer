@@ -6,7 +6,7 @@ SÁBÁT is a modular pavilion (Ø 370 × H 230 cm; Texcycle yarn, recycled fabri
 
 - **Strut families:** how many module lengths there are, and how many of each to cut.
 - **Connectors by valence:** the 3D-printed and machined nodes that join 4, 5 or 6 struts.
-- **Modelled height, panel count and total strut length.**
+- **Model height, panel count and total strut length.**
 
 ## How it works
 
@@ -31,7 +31,7 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 | | |
 |---|---|
-| height | built pavilion H 230 cm; the model gives 219.7 cm, the nearest full panel row (`sabat/core.py:95`) |
+| height | Built pavilion H 230 cm; model height 219.7 cm, the panel-row cut closest to it |
 | nodes / struts / panels | 61 / 165 / 105 |
 | strut families | A 64.5 cm × 30 · B 74.7 cm × 55 · C 76.3 cm × 80 |
 | connectors | 15 × 4-way · 6 × 5-way · 40 × 6-way |
@@ -39,7 +39,7 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 ### Connector table (computed from the geometry)
 
-| hub | count | strut elevation below tangent plane | angle between neighbouring struts |
+| hub | count | strut elevation below tangent plane | angle between neighboring struts |
 |---|---|---|---|
 | 4-way (rim) | 15 | 11.63–11.91° | 59.99–180° (180° = open rim side) |
 | 5-way | 6 | 10.03–10.04° | 71.99–72.01° |
@@ -54,15 +54,15 @@ For each panel, the tool reports:
 These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
 ### Robustness
-- **Height cut:** the tool picks the panel-row cut whose modelled height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
+- **Height cut:** the tool picks the panel-row cut whose model height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
 - **Input checks:** it rejects specs that aren't JSON objects, numbers that are NaN, infinite or out of range (diameter 10–100,000 cm), and empty names.
 - **Safe output:** the name is escaped in the SVG, and a missing or invalid JSON file gives a clear error message.
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
 
 ### Themes
-`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`. A button in the top corner names the mode it will switch to, remembers your choice, and tells screen readers whether dark mode is on. The plan SVG and the 3D view are coloured through CSS variables. The 3D view can be rotated by dragging, or by focusing it with Tab and using the arrow keys.
+`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`. A button in the top corner names the mode it will switch to, remembers your choice, and tells screen readers whether dark mode is on. The plan SVG and the 3D view are colored through CSS variables. The 3D view can be rotated by dragging, or by focusing it with Tab and using the arrow keys.
 
-Contrast, measured on the rendered page (headless Chrome, computed colours): all page text is plum `#4a3a5c` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
+Contrast, measured on the rendered page (headless Chrome, computed colors): all page text is plum `#4a3a5c` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
 
 Open `site/index.html` to see the plan view.
 
