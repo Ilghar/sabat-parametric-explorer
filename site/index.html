@@ -3,7 +3,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:"Vazirmatn";src:url("fonts/vazirmatn-fa.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0600-06FF,U+200C-200D,U+FB50-FDFF,U+FE70-FEFF}
-h1 em{font-weight:300;text-transform:uppercase;letter-spacing:.14em}
+@font-face{font-family:"Jost";src:url("fonts/jost-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+:root{--title-fa-weight:400;--title-fa-size:.9em;--title-lat-weight:400}
+h1 [lang="fa"]{font-weight:var(--title-fa-weight);font-size:var(--title-fa-size)}
+h1 em{font-weight:var(--title-lat-weight);text-transform:uppercase;letter-spacing:.14em}
 [lang="fa"]{font-family:"Vazirmatn","Noto Naskh Arabic",sans-serif;letter-spacing:0;text-transform:none}
 :root{--canvas:#f3f1f6;--surface:#fffcfe;--ink:#4a3a5c;--muted:#7a688c;--subtle:#a394ae;--accent:#c97a98;--line:#e4dde8;--ring:#c97a98;--front:var(--ink);color-scheme:light}
 .dark{--canvas:#4a434c;--surface:#5a535c;--ink:#f4eef3;--muted:#cbbdce;--subtle:#cbbdce;--accent:#e8a8bc;--line:#a394ae;--ring:#e8a8bc;--front:var(--accent);color-scheme:dark}
