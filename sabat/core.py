@@ -140,9 +140,9 @@ def geometry_json(result):
 def public(result):
     return {k: v for k, v in result.items() if not k.startswith("_")}
 
-PALETTE = {"canvas": "#f3f1f6", "plum": "#4a3a5c", "rose": "#c97a98", "mauve": "#a394ae"}
+PALETTE = {"canvas": "#f3f1f6", "plum": "#473448", "rose": "#856a8e", "mauve": "#a6a1a7"}
 
-CSS_VARS = {"#f3f1f6": "--canvas", "#4a3a5c": "--ink", "#c97a98": "--accent", "#a394ae": "--subtle"}
+CSS_VARS = {"#f3f1f6": "--canvas", "#473448": "--ink", "#856a8e": "--accent", "#a6a1a7": "--subtle"}
 
 def _themeable(svg_text):
     """Turn palette attributes into CSS-variable styles with hex fallbacks, so the

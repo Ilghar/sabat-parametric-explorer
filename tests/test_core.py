@@ -21,7 +21,7 @@ class T(unittest.TestCase):
         for bad in ({}, {**SPEC, "frequency": 0}, {**SPEC, "height_cm": 999}, {**SPEC, "frequency": True}):
             with self.assertRaises(ValueError): dome(bad)
     def test_svg(self):
-        s = svg(dome(SPEC)); self.assertIn("#4a3a5c", s); self.assertIn("ilghar.studio", s)
+        s = svg(dome(SPEC)); self.assertIn("#473448", s); self.assertIn("ilghar.studio", s)
 
 if __name__ == "__main__": unittest.main()
 

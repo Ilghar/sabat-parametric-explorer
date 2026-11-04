@@ -66,7 +66,7 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 ### Themes
 `site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`. A button in the top corner names the mode it will switch to, remembers your choice, and tells screen readers whether dark mode is on. The plan SVG and the 3D view are coloured through CSS variables. The 3D view can be rotated by dragging, or by focusing it with Tab and using the arrow keys.
 
-Contrast, measured on the rendered page (headless Chrome, computed colours): all page text is plum `#4a3a5c` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
+Contrast, measured on the rendered page (headless Chrome, computed colours): all page text is plum `#473448` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
 
 Open `site/index.html` to see the plan view.
 
