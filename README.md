@@ -1,15 +1,61 @@
 # ساباط — SÁBÁT · parametric pavilion explorer
 
-*by ilghar.studio*
+*by [ilghar.studio](https://ilghar.studio)*
 
-SÁBÁT is a modular pavilion (Ø 370 × H 230 cm; Texcycle yarn, recycled fabric, wood, metal, PLA) that brings Iranian mosaic geometry together with Buckminster Fuller's geodesic domes. It is a space for hospitality, care and shared ritual, rooted in Zoroastrian philosophy. This repository is its **parametric explorer**. You give it a pavilion spec, and it works out the module system you'd need to fabricate:
+<p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.png">
+    <img src="assets/readme/hero-light.png" alt="SÁBÁT live explorer: geodesic base with knitted peaks, plan and elevation." width="760" style="max-width:100%;height:auto;border-radius:12px;">
+  </picture>
+</p>
+
+**Live explorer** → [ilghar.github.io/sabat-parametric-explorer](https://ilghar.github.io/sabat-parametric-explorer/)
+
+Sliders for diameter, pyramid peak (built **57 cm**), legs and stick thickness. Covers on/off, entrance open/closed. Connector selector with technical SVG drawings, live 3D and STL download. Parts tables update as the geometry changes.
+
+## Palette & type
+
+| | | | | | | |
+|---|---|---|---|---|---|---|
+| <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#473448;vertical-align:middle"></span> plum `#473448` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#5a515c;vertical-align:middle"></span> ink `#5a515c` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#775a76;vertical-align:middle"></span> mauve `#775a76` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#fcb4c4;vertical-align:middle"></span> pink `#fcb4c4` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#aa9eb1;vertical-align:middle"></span> muted `#aa9eb1` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#f9fafb;border:1px solid #856a8e;vertical-align:middle"></span> canvas `#f9fafb` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#2a272d;vertical-align:middle"></span> dark `#2a272d` |
+
+Sticks walnut `#5b4032` · peak `#3a3a3c` · corners 12 px. Typography: **Jost** / Brandon Text / **Nunito Sans**. The Pages site follows the system light/dark setting by default (`prefers-color-scheme`) and keeps a manual toggle that remembers your choice.
+
+## Connectors (live on Pages)
+
+Each part is drawn and modelled from the slider values. At the built values every part matches the stage-1 originals.
+
+<table>
+  <tr>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub5-dark.png"><img src="assets/readme/hub5-light.png" alt="5-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>5-way hub</sub></td>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub6-dark.png"><img src="assets/readme/hub6-light.png" alt="6-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>6-way hub</sub></td>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/corner-dark.png"><img src="assets/readme/corner-light.png" alt="L corner technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>L corner 20A</sub></td>
+  </tr>
+  <tr>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/tee-dark.png"><img src="assets/readme/tee-light.png" alt="T tee technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>T tee 2A</sub></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/ball-dark.png"><img src="assets/readme/ball-light.png" alt="Ball connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>Ball connector</sub></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/peak-dark.png"><img src="assets/readme/peak-light.png" alt="Peak connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>Peak connector</sub></td>
+  </tr>
+</table>
+
+## Built pavilion
+
+Ø 370 × H 230 cm · Texcycle yarn, recycled fabric, wood, metal, PLA · geodesic base for hospitality, care and shared ritual.
+
+> “SÁBÁT”, a structure commonly found in Yazd, Iran, series of interconnected arches or vaulted ceilings, harmonious blend of hospitality, grace, and cultural resonance.
+> <cite>Hāèl, master thesis, 2024</cite>
+
+---
+
+## Also a Python CLI
+
+You give it a pavilion spec, and it works out the module system you'd need to fabricate:
 
 - **Strut families:** how many module lengths there are, and how many of each to cut.
 - **Connectors by valence:** the 3D-printed and machined nodes that join 4, 5 or 6 struts.
-- **Built height, panel count and total strut length.**
-- **Plan-view SVG** with girih-star panel infills, plus a drag-to-rotate 3D view in `site/index.html`.
+- **Model height, panel count and total strut length.**
 
-## How it works
+### How it works
 
 ```mermaid
 flowchart LR
@@ -21,7 +67,7 @@ flowchart LR
   F & N --> O[report.json + plan.svg]
 ```
 
-## Run it (Python ≥ 3.11, no dependencies)
+### Run it (Python ≥ 3.11, no dependencies)
 
 ```bash
 python3 -m sabat fixtures/sabat_pavilion.json --svg site/sabat_plan.svg
@@ -32,7 +78,7 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 | | |
 |---|---|
-| built height | 219.7 cm |
+| height | Built pavilion H 230 cm; model height 219.7 cm, the panel-row cut closest to it (`sabat/core.py:95`) |
 | nodes / struts / panels | 61 / 165 / 105 |
 | strut families | A 64.5 cm × 30 · B 74.7 cm × 55 · C 76.3 cm × 80 |
 | connectors | 15 × 4-way · 6 × 5-way · 40 × 6-way |
@@ -40,49 +86,39 @@ Real output for the thesis pavilion (`fixtures/sabat_pavilion.json`: 3V, Ø 370,
 
 ### Connector table (computed from the geometry)
 
-| hub | count | strut elevation below tangent plane | angle between neighbouring struts |
+| hub | count | strut elevation below tangent plane | angle between neighboring struts |
 |---|---|---|---|
 | 4-way (rim) | 15 | 11.63–11.91° | 59.99–180° (180° = open rim side) |
 | 5-way | 6 | 10.03–10.04° | 71.99–72.01° |
 | 6-way | 40 | 10.03–11.91° | 55.68–62.17° |
 
-### Panel openness / acoustic proxy: **heuristic, not a measured acoustic result**
+### Panel acoustic proxy: **heuristic, not a measured acoustic result**
 
 For each panel, the tool reports:
 
-- `infill_ratio`: the girih star's area divided by the panel's area.
-- `openness`: 1 − `infill_ratio`.
-- `facing_centre`: the |cos| between the panel's normal and the direction to the centre of the floor.
-- `focus_proxy`: `infill_ratio` × `facing_centre`, a rough flag for panels that may focus sound.
+- `facing_centre`: the |cos| between the panel's normal and the direction to the center of the floor.
 
-These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean openness is 0.7036 and the mean facing_centre is 0.988. Facing is almost uniform because the floor centre sits close to the sphere's centre. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
+These are geometric indicators only, with no acoustic simulation or measurement behind them. For the thesis pavilion, the mean facing_centre is 0.988. Facing is almost uniform because the floor center sits close to the sphere's center. Every value is in `fixtures/expected_output.json` under `panel_proxy_HEURISTIC`.
 
 ### Robustness
-- **Height cut:** the tool picks the panel-row cut whose built height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
+- **Height cut:** the tool picks the panel-row cut whose model height is closest to the target. It prints a warning if the result is more than 5% off, and gives a clear error if the height is too small for the chosen frequency and diameter.
 - **Input checks:** it rejects specs that aren't JSON objects, numbers that are NaN, infinite or out of range (diameter 10–100,000 cm), and empty names.
 - **Safe output:** the name is escaped in the SVG, and a missing or invalid JSON file gives a clear error message.
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
 
 ### Themes
-`site/index.html` uses the studio light and `.dark` design tokens. It follows `prefers-color-scheme`. A button in the top corner names the mode it will switch to, remembers your choice, and tells screen readers whether dark mode is on. The plan SVG and the 3D view are coloured through CSS variables. The 3D view can be rotated by dragging, or by focusing it with Tab and using the arrow keys.
-
-Contrast, measured on the rendered page (headless Chrome, computed colours): all page text is plum `#473448` in light mode (9.13:1 on the canvas, 10.05:1 on the button surface) and `#f4eef3` in dark mode (8.36:1 on the canvas, 6.50:1 on the button surface), so it meets WCAG AA (4.5:1). The front struts of the 3D view meet the 3:1 graphics minimum (9.13:1 light, 4.89:1 dark); the back struts and plan infills are deliberately lighter depth cues and fall below 3:1. The text baked into the project board images is not covered by this measurement. `tests/test_adversarial.py` checks the token pairs.
-
-Open `site/index.html` to see the plan view.
+`site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column (max ~760 px) with 12 px rounded corners.
 
 ### Checked against published tables
 `tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
 
 ## Original vision: still to build
-- **Mosaic layer (started):** each panel now carries a deterministic girih star with three tips and three waists (tips toward the corners, waists pulled toward the centre), built from first principles; around each 5- and 6-way hub the tips point inward and suggest 5- and 6-fold rosettes; next: real pattern families inspired by the ceiling of the Ali Qapu music room, Isfahan (c. 1615, under Shah ʿAbbas I) [1].
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
-- **Connector CAD:** generate parametric connector geometry for the three main 3D-printed and machined connectors.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.
 - **Structural testing:** add statistical and structural testing.
-- **Interactive 3D view (started):** `site/index.html` has a drag-to-rotate vanilla JS/SVG view; next: panel shading and textile envelope.
 - **"Gateways to heaven" study:** compare cosmological geometry across Chogha Zanbil, the Isfahan Friday Mosque, the Louvre pyramid and Notre-Dame.
 
 ## References
 [1] Sussan Babaie, “Isfahan x. Monuments (2) Palaces”, *Encyclopaedia Iranica* (published 2007, updated 2014), https://www.iranicaonline.org/articles/isfahan-x2-palaces/ (dates the top floor's decorated private rooms of the ʿĀli Qāpu to around 1615, under Shah ʿAbbās I).
 
-© ilghar.studio. All rights reserved. Private.
+© ilghar.studio. All rights reserved.
