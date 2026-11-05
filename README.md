@@ -4,8 +4,8 @@
 
 <p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.png">
-    <img src="assets/readme/hero-light.png" alt="SÁBÁT live explorer: pavilion frame with knitted peaks, plan and elevation." width="760" style="max-width:100%;height:auto;border-radius:12px;">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/sabat_hero_dark.svg">
+    <img src="assets/readme/sabat_hero_light.svg" alt="SÁBÁT, Parametric Shelter Explorer: a live pavilion model of frame, struts and connectors, beside a front-view line drawing of the triangulated frame with peaked panels." width="760" style="max-width:100%;height:auto;border-radius:0;">
   </picture>
 </p>
 
