@@ -7,7 +7,7 @@
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
 const deg=r=>r*180/Math.PI,rad=d=>d*Math.PI/180,ang=(a,b)=>deg(Math.acos(Math.max(-1,Math.min(1,dot(unit(a),unit(b))))));
-const COL={hub5:"#473448",hub6:"#775a76",ball:"#2a272d",tee:"#fcb4c4",corner:"#c4768c",peak:"#3a3a3c",stick:"#5b4032"};
+const COL={hub5:"#473448",hub6:"#775a76",ball:"#2a272d",tee:"#fcb4c4",corner:"#775a76",peak:"#2a272d"/* peak connector material: dark grey (Hāèl) */,stick:"#5b4032"/* walnut wood material */};
 // stage-1 constants (mm)
 const K={clear:0.2,wallF:4.45,/* (29.3-20.4)/2: 21.3 tube + 4 mm casting wall [A] */
   aCornerB:40,aTeeB:41,sizeScale:21.3/26.9,/* drawings 6080Z20 / 6080Z02 size B, scaled to size A [S]+[A] */
