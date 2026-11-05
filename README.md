@@ -5,7 +5,7 @@
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.png">
-    <img src="assets/readme/hero-light.png" alt="SÁBÁT live explorer: geodesic base with knitted peaks, plan and elevation." width="760" style="max-width:100%;height:auto;border-radius:12px;">
+    <img src="assets/readme/hero-light.png" alt="SÁBÁT live explorer: pavilion frame with knitted peaks, plan and elevation." width="760" style="max-width:100%;height:auto;border-radius:12px;">
   </picture>
 </p>
 
@@ -40,7 +40,7 @@ Each part is drawn and modelled from the slider values. At the built values ever
 
 ## Built pavilion
 
-Ø 370 × H 230 cm · Texcycle yarn, recycled fabric, wood, metal, PLA · geodesic base for hospitality, care and shared ritual.
+Ø 370 × H 230 cm · Texcycle yarn, recycled fabric, wood, metal, PLA · pavilion frame for hospitality, care and shared ritual.
 
 > “SÁBÁT”, a structure commonly found in Yazd, Iran, series of interconnected arches or vaulted ceilings, harmonious blend of hospitality, grace, and cultural resonance.
 > <cite>Hāèl, master thesis, 2024</cite>
