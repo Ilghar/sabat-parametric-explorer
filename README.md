@@ -109,9 +109,6 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 ### Themes
 `site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column with square frames.
 
-### Checked against published tables
-`tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 frame against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
-
 ## Original vision: still to build
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
 - **Textile envelope:** plan the knitted envelope made from used clothes, as a collection of memories.
