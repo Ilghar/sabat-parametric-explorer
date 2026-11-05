@@ -107,7 +107,7 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
 
 ### Themes
-`site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column (max ~760 px) with 12 px rounded corners.
+`site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column with square frames.
 
 ### Checked against published tables
 `tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
