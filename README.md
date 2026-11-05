@@ -4,8 +4,8 @@
 
 <p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.png">
-    <img src="assets/readme/hero-light.png" alt="SÁBÁT live explorer: pavilion frame with knitted peaks, plan and elevation." width="760" style="max-width:100%;height:auto;border-radius:12px;">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme/sabat_hero_dark.svg">
+    <img src="assets/readme/sabat_hero_light.svg" alt="SÁBÁT, Parametric Shelter Explorer: a live pavilion model of frame, struts and connectors, beside a front-view line drawing of the triangulated frame with peaked panels." width="100%" style="max-width:100%;height:auto;border-radius:0;">
   </picture>
 </p>
 
@@ -17,9 +17,9 @@ Sliders for diameter, pyramid peak (built **57 cm**), legs and stick thickness. 
 
 | | | | | | | |
 |---|---|---|---|---|---|---|
-| <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#473448;vertical-align:middle"></span> plum `#473448` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#5a515c;vertical-align:middle"></span> ink `#5a515c` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#775a76;vertical-align:middle"></span> mauve `#775a76` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#fcb4c4;vertical-align:middle"></span> pink `#fcb4c4` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#a6a1a7;vertical-align:middle"></span> muted `#a6a1a7` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#f9fafb;border:1px solid #856a8e;vertical-align:middle"></span> canvas `#f9fafb` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#2a272d;vertical-align:middle"></span> dark `#2a272d` |
+| <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#473448;vertical-align:middle"></span> plum `#473448` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#5a515c;vertical-align:middle"></span> ink `#5a515c` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#775a76;vertical-align:middle"></span> mauve `#775a76` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#fcb4c4;vertical-align:middle"></span> pink `#fcb4c4` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#a6a1a7;vertical-align:middle"></span> muted `#a6a1a7` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#f9fafb;border:1px solid #856a8e;vertical-align:middle"></span> canvas `#f9fafb` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#2a272d;vertical-align:middle"></span> dark `#2a272d` |
 
-Sticks walnut `#5b4032` · peak connector `#2a272d` · corners 12 px. Typography: **Jost** / Brandon Text / **Nunito Sans**. The Pages site follows the system light/dark setting by default (`prefers-color-scheme`) and keeps a manual toggle that remembers your choice.
+Sticks walnut `#5b4032` · peak connector `#2a272d`. Typography: **Jost**. The Pages site follows the system light/dark setting by default (`prefers-color-scheme`) and keeps a manual toggle that remembers your choice.
 
 ## Connectors (live on Pages)
 
@@ -27,14 +27,14 @@ Each part is drawn and modelled from the slider values. At the built values ever
 
 <table>
   <tr>
-    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub5-dark.png"><img src="assets/readme/hub5-light.png" alt="5-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>5-way hub</sub></td>
-    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub6-dark.png"><img src="assets/readme/hub6-light.png" alt="6-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>6-way hub</sub></td>
-    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/corner-dark.png"><img src="assets/readme/corner-light.png" alt="L corner technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>L corner 20A</sub></td>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub5-dark.png"><img src="assets/readme/hub5-light.png" alt="5-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>5-way hub</sub></td>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/hub6-dark.png"><img src="assets/readme/hub6-light.png" alt="6-way hub technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>6-way hub</sub></td>
+    <td width="33%"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/corner-dark.png"><img src="assets/readme/corner-light.png" alt="L corner technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>L corner 20A</sub></td>
   </tr>
   <tr>
-    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/tee-dark.png"><img src="assets/readme/tee-light.png" alt="T tee technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>T tee 2A</sub></td>
-    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/ball-dark.png"><img src="assets/readme/ball-light.png" alt="Ball connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>Ball connector</sub></td>
-    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/peak-dark.png"><img src="assets/readme/peak-light.png" alt="Peak connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:12px;"></picture><br><sub>Peak connector</sub></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/tee-dark.png"><img src="assets/readme/tee-light.png" alt="T tee technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>T tee 2A</sub></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/ball-dark.png"><img src="assets/readme/ball-light.png" alt="Ball connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>Ball connector</sub></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme/peak-dark.png"><img src="assets/readme/peak-light.png" alt="Peak connector technical drawing" width="240" style="max-width:100%;height:auto;border-radius:0;"></picture><br><sub>Peak connector</sub></td>
   </tr>
 </table>
 
@@ -107,10 +107,7 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 - **Strut lengths:** struts are grouped by a relative tolerance rather than by rounding.
 
 ### Themes
-`site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column (max ~760 px) with 12 px rounded corners.
-
-### Checked against published tables
-`tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
+`site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column with square frames.
 
 ## Original vision: still to build
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
