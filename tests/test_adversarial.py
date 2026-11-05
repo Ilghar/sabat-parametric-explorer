@@ -35,8 +35,8 @@ class Adv(unittest.TestCase):
             self.assertEqual(len(r["strut_families"]), 3)
 
 class Theme(unittest.TestCase):
-    TOK = {"light": {"canvas": "#f3f1f6", "surface": "#fffcfe", "ink": "#473448", "accent": "#856a8e"},
-           "dark": {"canvas": "#473448", "surface": "#5a535c", "ink": "#f4eef3", "accent": "#e8a8bc"}}
+    TOK = {"light": {"canvas": "#f9fafb", "surface": "#f9fafb", "ink": "#5a515c", "accent": "#473448"},
+           "dark": {"canvas": "#2a272d", "surface": "#302d34", "ink": "#d4d2d2", "accent": "#cf9aae"}}
     @staticmethod
     def cr(a, b):
         def L(h):
@@ -53,7 +53,7 @@ class Theme(unittest.TestCase):
         self.assertGreaterEqual(self.cr(self.TOK["dark"]["accent"], self.TOK["dark"]["canvas"]), 3)
     def test_page_has_toggle_and_tokens(self):
         h = open("site/index.html", encoding="utf-8").read()
-        for needle in ("prefers-color-scheme", "localStorage", "aria-pressed", ".dark", "#473448", "var(--ink"):
+        for needle in ("prefers-color-scheme", "localStorage", "aria-pressed", "data-theme", "#473448", "var(--ink"):
             self.assertIn(needle, h)
     def test_svg_valid_xml_and_themeable(self):
         import xml.dom.minidom
