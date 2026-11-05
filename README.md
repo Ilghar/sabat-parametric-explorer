@@ -17,7 +17,7 @@ Sliders for diameter, pyramid peak (built **57 cm**), legs and stick thickness. 
 
 | | | | | | | |
 |---|---|---|---|---|---|---|
-| <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#473448;vertical-align:middle"></span> plum `#473448` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#5a515c;vertical-align:middle"></span> ink `#5a515c` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#775a76;vertical-align:middle"></span> mauve `#775a76` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#fcb4c4;vertical-align:middle"></span> pink `#fcb4c4` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#a6a1a7;vertical-align:middle"></span> muted `#a6a1a7` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#f9fafb;border:1px solid #856a8e;vertical-align:middle"></span> canvas `#f9fafb` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:3px;background:#2a272d;vertical-align:middle"></span> dark `#2a272d` |
+| <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#473448;vertical-align:middle"></span> plum `#473448` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#5a515c;vertical-align:middle"></span> ink `#5a515c` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#775a76;vertical-align:middle"></span> mauve `#775a76` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#fcb4c4;vertical-align:middle"></span> pink `#fcb4c4` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#a6a1a7;vertical-align:middle"></span> muted `#a6a1a7` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#f9fafb;border:1px solid #856a8e;vertical-align:middle"></span> canvas `#f9fafb` | <span style="display:inline-block;width:1.1em;height:1.1em;border-radius:0;background:#2a272d;vertical-align:middle"></span> dark `#2a272d` |
 
 Sticks walnut `#5b4032` · peak connector `#2a272d`. Typography: **Jost**. The Pages site follows the system light/dark setting by default (`prefers-color-scheme`) and keeps a manual toggle that remembers your choice.
 
@@ -110,7 +110,7 @@ These are geometric indicators only, with no acoustic simulation or measurement 
 `site/index.html` is the live explorer. It follows `prefers-color-scheme` on first load, sets `data-theme`, and a button remembers your choice in `localStorage`. All figures, canvases and images are capped to the page column with square frames.
 
 ### Checked against published tables
-`tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 dome against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
+`tests/test_published.py` compares chord factors, strut counts, connector counts and bend angles for a Class I 3V 5/8 frame against the published tables in Desert Domes ("Dome Formulas") cross-checked with Domerama ("Chord factor charts"). Only the numbers are used; no code is copied.
 
 ## Original vision: still to build
 - **Acoustic and atmospheric scoring:** score each panel infill for sound and atmosphere, balancing stability against acoustic harmony.
