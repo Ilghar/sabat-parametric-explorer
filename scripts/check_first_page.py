@@ -27,6 +27,11 @@ are not checked for this colour.
 Photo boards named disagreement or fact-vs-taste are palette-allowlisted
 (off-palette colours are ignored) but still run the blue check.
 
+Raster photos on the designer photo allowlist (exact file name, e.g.
+sabat-pavilion.jpg) are exempt from the no-dark-source rule and from the
+blue-pixel check: sky in a real photograph is allowed. Illustrations and
+SVGs still run the blue check.
+
 Content images need a light and a dark file, served through <picture> with
 a prefers-color-scheme dark source (and swapped by the theme toggle).
 A content <img> with no dark source FAILs. Favicons and app icons are skipped.
@@ -909,12 +914,25 @@ SKIP_IMG = re.compile(
     r"(favicon|apple-touch-icon|icon-192|icon-512|site\.webmanifest|/icons/)",
     re.I,
 )
-# DESIGNER photo allowlist: these stay as a single source (no dark variant).
-# They are exempt from the no-dark-source rule only; the blue check still runs.
+# DESIGNER photo allowlist: exact file names that stay as a single source
+# (no dark variant). Raster photos on this list are also exempt from the
+# blue-pixel check (sky in a photograph is allowed). Illustrations/SVGs
+# still run the blue check.
 PHOTO_NO_DARK = re.compile(
     r"(?:^|/)(?:disagreement\.svg|fact-vs-taste\.svg|sabat-pavilion\.jpe?g)(?:\?|$)",
     re.I,
 )
+PHOTO_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+
+
+def is_allowlisted_photo(path: Path | str) -> bool:
+    """True for raster photos on the designer photo allowlist (exact file name)."""
+    text = path.as_posix() if isinstance(path, Path) else str(path).replace("\\", "/")
+    if not (PHOTO_NO_DARK.search(text) or PHOTO_NO_DARK.search(Path(text).name)):
+        return False
+    return Path(text).suffix.lower() in PHOTO_EXTS
+
+
 DARK_SOURCE = re.compile(
     r"<source\b[^>]*(?:media=['\"][^'\"]*prefers-color-scheme\s*:\s*dark|srcset=['\"][^'\"]*[-_]dark\b|src=['\"][^'\"]*[-_]dark\b)",
     re.I,
@@ -1128,6 +1146,16 @@ def run_broken_samples() -> list[str]:
         False,
         check_content_images,
     )
+
+    def photo_blue_exempt(src):
+        return ["exempt"] if is_allowlisted_photo(src) else []
+
+    hit("photo-blue-exempt-pavilion", "site/sabat-pavilion.jpg", True, photo_blue_exempt)
+    hit("photo-blue-exempt-jpeg", "sabat-pavilion.jpeg", True, photo_blue_exempt)
+    hit("photo-blue-svg-disagreement-still-checked", "assets/disagreement.svg", False, photo_blue_exempt)
+    hit("photo-blue-svg-fact-vs-taste-still-checked", "assets/fact-vs-taste.svg", False, photo_blue_exempt)
+    hit("photo-blue-other-jpg-still-checked", "site/other-photo.jpg", False, photo_blue_exempt)
+    hit("illustration-svg-still-checked", "assets/board-light.svg", False, photo_blue_exempt)
     return fails
 
 
@@ -1206,6 +1234,8 @@ def main() -> int:
                 if blue > 12:
                     failures.append(f"BLUE {rel}: ~{blue} blue samples")
             else:
+                if is_allowlisted_photo(p):
+                    continue
                 blue = scan_blue_pixels(Image.open(p))
                 if blue > 12:
                     failures.append(f"BLUE {rel}: ~{blue} blue samples")
