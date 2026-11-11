@@ -122,6 +122,49 @@ figure,canvas,.panel,.facts,.hero img{border-radius:12px}
 [data-theme=dark] :is(.note,figcaption,cite,footer,th,.facts dt,.tag,.hint,.help,.cap){color:#d4d2d2}
 .brand{color:var(--label,#775a76)!important;text-transform:uppercase;letter-spacing:.12em;font-size:13px!important;font-weight:500!important}
 </style>
+<style>
+/* Allowlisted photos: pixels left unaltered, 12px frame, dark surroundings in dark mode */
+figure:has(>img[src*="disagreement.svg"]),
+figure:has(>img[src*="fact-vs-taste.svg"]),
+figure.hero:has(>img[src*="sabat-pavilion.jpg"]){
+  margin:0 0 28px;
+  padding:12px;
+  overflow:hidden;
+  border-radius:12px;
+  border:.32pt solid var(--line, #856a8e);
+  background:var(--canvas, #f9fafb);
+  box-shadow:none;
+}
+figure:has(>img[src*="disagreement.svg"]) img,
+figure:has(>img[src*="fact-vs-taste.svg"]) img,
+figure.hero:has(>img[src*="sabat-pavilion.jpg"]) img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:0;
+  box-shadow:none;
+  background:transparent;
+  filter:none;
+}
+[data-theme=dark] figure:has(>img[src*="disagreement.svg"]),
+[data-theme=dark] figure:has(>img[src*="fact-vs-taste.svg"]),
+[data-theme=dark] figure.hero:has(>img[src*="sabat-pavilion.jpg"]),
+.ilg-case[data-theme=dark] figure:has(>img[src*="disagreement.svg"]),
+.ilg-case[data-theme=dark] figure:has(>img[src*="fact-vs-taste.svg"]){
+  background:#2a272d;
+  border-color:var(--line, #a6a1a7);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme=light]) figure:has(>img[src*="disagreement.svg"]),
+  :root:not([data-theme=light]) figure:has(>img[src*="fact-vs-taste.svg"]),
+  :root:not([data-theme=light]) figure.hero:has(>img[src*="sabat-pavilion.jpg"]),
+  .ilg-case:not([data-theme=light]) figure:has(>img[src*="disagreement.svg"]),
+  .ilg-case:not([data-theme=light]) figure:has(>img[src*="fact-vs-taste.svg"]){
+    background:#2a272d;
+    border-color:var(--line, #a6a1a7);
+  }
+}
+</style>
 </head>
 <body>
 <main>
