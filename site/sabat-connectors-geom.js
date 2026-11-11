@@ -2,7 +2,7 @@
    Input: a SabatGeom.build() result (cm) + stick Ø (mm). Output per connector: primitives in mm (Y up),
    computed angles/dimensions, counts. At the built values every part reproduces the stage-1 originals
    (/workspace/portfolio/images/sabat_3d/stage1, build_stage1.py P dict). Source tags: [S] product spec / drawing,
-   [H] Hāèl, [C] computed from the dome, [A] assumption kept from stage 1. */
+   [H] Hāèl, [C] computed from the structure, [A] assumption kept from stage 1. */
 (function(root){
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
