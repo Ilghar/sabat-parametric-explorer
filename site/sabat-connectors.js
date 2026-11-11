@@ -25,7 +25,7 @@ function drawing(p){
         if(s.ri){const b0=s.rev?s.a:s.a.map((x,i)=>x+s.d[i]*(s.L-s.depth)),bl=s.rev?s.depth:s.depth;o.push({k:"p",pts:hull(cylPts(b0,s.d,bl,s.ri).map(pr)),s,bore:1})}}}return o};
   const all=views.map(v=>{const a=shapes(v);return a.filter(z=>z.s.t==="stub").concat(a.filter(z=>z.s.t!=="stub"))}),bx=(sh,stub)=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;sh.filter(z=>stub||z.s.t!=="stub").forEach(z=>{(z.k==="c"?[[z.c[0]-z.r,z.c[1]-z.r],[z.c[0]+z.r,z.c[1]+z.r]]:z.pts).forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)})});return {x0,x1,y0,y1}},ext=all.map(sh=>bx(sh)),exs=all.map(sh=>bx(sh,1));
   const sc=Math.min(...ext.map(e=>Math.min((W-2*pad-90)/(e.x1-e.x0||1),(VH-110)/(e.y1-e.y0||1))));
-  let o=`<svg viewBox="0 0 ${W} ${VH*3}" role="img" aria-label="${p.name}: front, side and top views, dimensions in mm" font-family="Jost,'Nunito Sans',system-ui,sans-serif">`;
+  let o=`<svg viewBox="0 0 ${W} ${VH*3}" role="img" aria-label="${p.name}: front, side and top views, dimensions in mm" font-family="Jost,sans-serif">`;
   views.forEach((v,vi)=>{const e=ext[vi],cx=pad+ (W-2*pad-60)/2,cy=vi*VH+VH/2+8,ox=cx-sc*(e.x0+e.x1)/2,oy=cy-sc*(e.y0+e.y1)/2,T=([x,y])=>[ox+sc*x,oy+sc*y],pr=VIEWS[v];
     o+=`<text x="16" y="${vi*VH+26}" font-size="12" letter-spacing="2.4" fill="var(--label)">${v.toUpperCase()}</text>`;
     if(vi)o+=`<line x1="16" x2="${W-16}" y1="${vi*VH}" y2="${vi*VH}" stroke="var(--line)" stroke-width=".6" stroke-dasharray="1 3"/>`;
