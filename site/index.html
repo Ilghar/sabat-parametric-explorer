@@ -7,13 +7,13 @@
 
 <title>SÁBÁT · pavilion explorer · ilghar.studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{--name:#fcb4c4;--sec:#7d5a7c;--em:#856a8e;--label:#775a76;--key:#473448}
 :root{--canvas:#f9fafb;--surface:#f9fafb;--ink:#5a515c;--title:#473448;--muted:#7d5a7c;--subtle:#a6a1a7;--accent:#473448;--deco:#fcb4c4;--accent-fg:#f9fafb;--line:#856a8e;--ring:#473448;--track:#7d5a7c;--note-s:#5a515c;--note-p:#7d5a7c;color-scheme:light}
-[data-theme=dark]{--canvas:#2a272d;--surface:#2a272d;--ink:#d4d2d2;--title:#d4d2d2;--muted:#a6a1a7;--subtle:#a6a1a7;--accent:#fcb4c4;--deco:#fcb4c4;--accent-fg:#2a272d;--line:#a6a1a7;--ring:#fcb4c4;--track:#a6a1a7;--note-s:#a6a1a7;--note-p:#a6a1a7;--name:#fcb4c4;--sec:#fcb4c4;--em:#a6a1a7;--label:#a6a1a7;--key:#fcb4c4;color-scheme:dark}
+[data-theme=dark]{--canvas:#2a272d;--surface:#2a272d;--ink:#d4d2d2;--title:#d4d2d2;--muted:#a6a1a7;--subtle:#a6a1a7;--accent:#fcb4c4;--deco:#fcb4c4;--accent-fg:#2a272d;--line:#a6a1a7;--ring:#fcb4c4;--track:#a6a1a7;--note-s:#a6a1a7;--note-p:#a6a1a7;--name:#856a8e;--sec:#a6a1a7;--em:#a6a1a7;--label:#a6a1a7;--key:#fcb4c4;color-scheme:dark}
 *{box-sizing:border-box}
-:root{--font-title:"Brandon Text",Jost,system-ui,sans-serif;--font-body:"Brandon Text",Jost,system-ui,sans-serif}
+:root{--font-title:Jost,sans-serif;--font-body:Jost,sans-serif}
 body{margin:0;background:var(--canvas);color:var(--ink);font:400 16px/1.65 var(--font-body)}
 main{max-width:1120px;margin:0 auto;padding:40px 24px 56px}
 h1,h2,h3{font-family:var(--font-title);font-weight:400;text-transform:uppercase;letter-spacing:.18em;color:var(--title);margin:0}
@@ -67,10 +67,10 @@ h1{font-size:31px;font-weight:400;letter-spacing:.2em;color:var(--name);line-hei
 h1 .fa{color:var(--name);font-size:24px}
 h2{font-size:23px;font-weight:400;letter-spacing:.12em;color:var(--sec);text-transform:uppercase}
 .panel h2,.facts h2,.counts h2{font-size:19px}
-b,strong,.key{font-weight:500;color:var(--key)}
+b,strong,.key{font-weight:400;color:var(--key)}
 em{font-style:italic;color:var(--em)}
 .note,figcaption,cite,footer,.brand,th,.facts dt,.ctl label{font-size:13px;font-weight:300}
-.ctl label,.facts dt,th{color:var(--label);font-weight:500}
+.ctl label,.facts dt,th{color:var(--label);font-weight:400}
 .hero{margin:0 0 28px;padding:0;border:0;background:none}
 .hero img{display:block;width:100%;height:auto;aspect-ratio:1200/744;max-height:520px;object-fit:cover;object-position:50% 60%}
 .hero figcaption{margin-top:6px}
@@ -91,7 +91,7 @@ main{max-width:100%;padding-left:16px;padding-right:16px}
 .app{margin-bottom:32px}.app>.main3d{order:-2}
 .dc{color:var(--dc)}
 :root:not([data-theme=dark]) h1,:root:not([data-theme=dark]) h1 .fa{color:#473448!important}
-:root:not([data-theme=dark]) h1 .dc{color:#fcb4c4;font-weight:600}
+:root:not([data-theme=dark]) h1 .dc{color:#fcb4c4;font-weight:400}
 :root:not([data-theme=dark]) :is(h2,h3,.sec,.label) .dc{color:#775a76}
 /* controls */
 button,.glass{background:var(--glass)!important;-webkit-backdrop-filter:blur(12px) saturate(1.1);backdrop-filter:blur(12px) saturate(1.1);border:1px solid var(--glass-edge)!important;border-radius:12px!important;box-shadow:-3px -3px 8px var(--sh-l),4px 4px 10px var(--sh-d),inset 0 1px 0 var(--glass-edge);color:var(--ink);transition:box-shadow .16s}
@@ -115,12 +115,13 @@ figure,canvas,.panel,.facts,.hero img{border-radius:12px}
 
 
 /* DESIGNER-BOSS review fixes (5 Nov): dark title first letter only, readable captions, brand label */
-[data-theme=dark]{--name:#d4d2d2;--note-s:#d4d2d2;--note-p:#d4d2d2}
-[data-theme=dark] h1,[data-theme=dark] h1 .fa{color:#d4d2d2!important}
+[data-theme=dark]{--name:#856a8e;--note-s:#d4d2d2;--note-p:#d4d2d2}
+[data-theme=dark] h1,[data-theme=dark] h1 .fa{color:#856a8e!important}
 [data-theme=dark] h1 .dc{color:#fcb4c4}
+[data-theme=dark] :is(h2,h3,.sec,.label) .dc{color:var(--sec,#a6a1a7)}
 .note,figcaption,cite,footer,th,.facts dt,.tag,.hint,.help,.cap{font-size:max(12px,13px)!important;font-weight:400!important;color:#5a515c}
 [data-theme=dark] :is(.note,figcaption,cite,footer,th,.facts dt,.tag,.hint,.help,.cap){color:#d4d2d2}
-.brand{color:var(--label,#775a76)!important;text-transform:uppercase;letter-spacing:.12em;font-size:13px!important;font-weight:500!important}
+.brand{color:var(--label,#775a76)!important;text-transform:uppercase;letter-spacing:.12em;font-size:13px!important;font-weight:400!important}
 </style>
 <style>
 /* Allowlisted photos: pixels left unaltered, 12px frame, dark surroundings in dark mode */
@@ -176,7 +177,7 @@ figure.hero:has(>img[src*="sabat-pavilion.jpg"]) img{
         <figcaption>Drag or use the arrow keys to rotate. Knit drawn as a smooth tension surface.</figcaption></figure>
   <form class="panel" id="ctl" aria-label="Model parameters" onsubmit="return false">
     <h2>parameters</h2>
-    <div class="ctl"><p class="note">2V Hubs kit dome: each large triangle splits into 4. Values marked “built” are the pavilion as made.</p></div>
+    <div class="ctl"><p class="note">2V hub kit</p></div>
     <div class="ctl"><label for="dia">Diameter <output id="diaO" for="dia"></output></label><input id="dia" type="range" min="200" max="900" step="1" value="352" list="diaB"><datalist id="diaB"><option value="352"></option></datalist><p class="note">Built: Ø 352 cm at the hub centres (1 m long stick + 88 mm hub allowance). Struts scale with it.</p></div>
     <div class="ctl"><label for="peak">Pyramid peak <output id="peakO" for="peak"></output></label><input id="peak" type="range" min="0" max="250" step="1" value="57" list="peakB"><datalist id="peakB"><option value="57"></option></datalist><p class="note">Built: 57 cm (model value, about ⅔ of 85 cm, per Hāèl).</p></div>
     <div class="ctl"><label for="leg">Leg height <output id="legO" for="leg"></output></label><input id="leg" type="range" min="0" max="200" step="1" value="54" list="legB"><datalist id="legB"><option value="54"></option></datalist><p class="note">Built: 54 cm, giving 230 cm to the crown hub (Hāèl).</p></div>
