@@ -1,8 +1,8 @@
 import argparse, json, sys
-from .core import dome, public, svg, panel_proxies, connector_table
+from .core import frame, public, svg, panel_proxies, connector_table
 
 def main(argv=None):
-    p = argparse.ArgumentParser(prog="sabat", description="SÁBÁT geodesic module explorer")
+    p = argparse.ArgumentParser(prog="sabat", description="SÁBÁT structure explorer")
     p.add_argument("spec", help="JSON pavilion spec")
     p.add_argument("--svg", help="write plan-view SVG here")
     a = p.parse_args(argv)
@@ -13,7 +13,7 @@ def main(argv=None):
     except json.JSONDecodeError as e:
         print(f"spec is not valid JSON: {e}", file=sys.stderr); return 2
     try:
-        r = dome(spec)
+        r = frame(spec)
     except ValueError as e:
         print(f"invalid spec: {e}", file=sys.stderr); return 2
     out = public(r); out["connector_table"] = connector_table(r)
