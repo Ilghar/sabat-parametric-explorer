@@ -2,7 +2,7 @@
    Input: a SabatGeom.build() result (cm) + stick Ø (mm). Output per connector: primitives in mm (Y up),
    computed angles/dimensions, counts. At the built values every part reproduces the stage-1 originals
    (/workspace/portfolio/images/sabat_3d/stage1, build_stage1.py P dict). Source tags: [S] product spec / drawing,
-   [H] Hāèl, [C] computed from the dome, [A] assumption kept from stage 1. */
+   [H] Hāèl, [C] computed from the structure, [A] assumption kept from stage 1. */
 (function(root){
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
@@ -18,7 +18,7 @@ const K={clear:0.2,wallF:4.45,/* (29.3-20.4)/2: 21.3 tube + 4 mm casting wall [A
   boss:9,hubAllow:88/* Hubs kit: stick = chord − 88 mm [S] */};
 function derive(res,stick){
   const s=stick/20,ps=stick/2,boreF=stick+2*K.clear,boreP=ps+2*K.clear;
-  const P=res.pts.map(p=>mul(p,10)),O=[0,0,res.leg*10];           // mm, dome centre
+  const P=res.pts.map(p=>mul(p,10)),O=[0,0,res.leg*10];           // mm, structure centre
   const nb=i=>res.edges.filter(e=>e[0]===i||e[1]===i).map(e=>e[0]===i?e[1]:e[0]);
   const out={},f1=x=>Math.round(x*10)/10;
   // ---------- hubs: strut directions in the hub frame (Y = outward normal) ----------

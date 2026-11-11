@@ -1,5 +1,5 @@
 /* Faithful JS port of sabat/core.py (Ilghar/sabat-parametric-explorer @468752b):
-   geodesic(), dome(), girih star, panel_proxies(). Same algorithm, same order. */
+   subdivide(), frame(), girih star, panel_proxies(). Same algorithm, same order. */
 (function (root) {
 const PHI = (1 + Math.sqrt(5)) / 2;
 const norm = p => { const l = Math.hypot(p[0], p[1], p[2]); return [p[0]/l, p[1]/l, p[2]/l]; };
@@ -16,7 +16,7 @@ function rotToZ(pts, a) {
   return pts.map(([x, y, z]) => { const kd = kx*x + ky*y; const cx = ky*z, cy = -kx*z, cz = kx*y - ky*x;
     return [x*c + cx*s + kx*kd*(1-c), y*c + cy*s + ky*kd*(1-c), z*c + cz*s]; });
 }
-function geodesic(freq) {
+function subdivide(freq) {
   if (!(Number.isInteger(freq) && freq >= 1 && freq <= 8)) throw new Error("frequency must be an int in 1..8");
   let [v, faces] = icosahedron(); v = rotToZ(v, v[0]);
   const key = new Map(), pts = [];
@@ -35,8 +35,8 @@ function geodesic(freq) {
   return [pts, tris];
 }
 function label(i) { let s = ""; i += 1; while (i) { const r = (i - 1) % 26; i = Math.floor((i - 1) / 26); s = String.fromCharCode(65 + r) + s; } return s; }
-function dome(spec) {
-  const [pts, tris] = geodesic(spec.frequency);
+function frame(spec) {
+  const [pts, tris] = subdivide(spec.frequency);
   const R = spec.diameter_cm / 2, H = spec.height_cm, zcut = 1 - H / R;
   const cz = t => (pts[t[0]][2] + pts[t[1]][2] + pts[t[2]][2]) / 3;
   const cut = zc => { const k = tris.filter(t => cz(t) >= zc - 1e-9); if (!k.length) return [k, null];
@@ -87,6 +87,6 @@ function panelProxies(res, k = 0.22) {
     return { panel: i, infill_ratio: pyRound(r, 4), openness: pyRound(1 - r, 4), facing_centre: pyRound(f, 4), focus_proxy: pyRound(r * f, 4) }; });
 }
 function publicOut(r) { const o = {}; for (const k in r) if (!k.startsWith("_")) o[k] = r[k]; return o; }
-const api = { geodesic, dome, star, panels, panelProxies, publicOut, pyRound };
+const api = { subdivide, frame, star, panels, panelProxies, publicOut, pyRound };
 if (typeof module !== "undefined") module.exports = api; else root.Sabat = api;
 })(this);

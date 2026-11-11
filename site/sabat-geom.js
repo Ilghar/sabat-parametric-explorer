@@ -1,5 +1,5 @@
 /* SÁBÁT 2V model, Revision 8 (2026-11-04; Rev 7 2026-10-31). Confirmed by Hāèl ("Yes exactly").
-   Hubs-kit 2V icosahedral dome cut at the equator (dome height = ½ Ø at the hub centres),
+   2V hub kit, icosahedral frame cut at the equator (structure height = ½ Ø at the hub centres),
    6 stars of 5 knitted pyramids (crown + 5 side). Optional entrance: one side star removed.
    Stick = hub-centre chord − 88 mm (Hubs kit size table). Units: cm. */
 (function(root){
