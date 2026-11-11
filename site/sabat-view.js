@@ -6,9 +6,9 @@ const q=new URLSearchParams(location.search);
 let res=null,yaw=+(q.get("yaw")||0.6),pitch=+(q.get("pitch")||0.25);
 const st={open:q.get("open")==="1",star:+(q.get("star")||1),cover:q.get("cover")!=="0"};
 ["dia","peak","leg","stk"].forEach(k=>{if(q.get(k))$(k).value=q.get(k)});
-const KNIT=[90,63,82],TARP=[163,160,155],WOOD="#5b4032"/* walnut: wood material colour of the sticks */,GAMMA=1.15,NU=6,NT=9;
+const KNIT=[90,63,82],TARP=[163,160,155],WOOD="#473448"/* walnut: wood material colour of the sticks */,GAMMA=1.15,NU=6,NT=9;
 // one colour per connector group, from the studio palette (same as the stage 1 GLBs and renders)
-const GRP={hub5:"#473448",hub6:"#775a76",corner:"#775a76",tee:"#fcb4c4",peak:"#2a272d"/* peak connector material: dark grey (Hāèl) */};
+const GRP={hub5:"#473448",hub6:"#775a76",corner:"#775a76",tee:"#856a8e",peak:"#2a272d"/* peak connector material: dark grey (Hāèl) */};
 const RIM=()=>"#f9fafb";
 const rgb=(c,k)=>`rgb(${c.map(v=>Math.round(Math.min(255,v*k))).join(",")})`;
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];

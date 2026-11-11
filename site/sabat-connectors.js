@@ -30,7 +30,7 @@ function drawing(p){
     o+=`<text x="16" y="${vi*VH+26}" font-size="12" letter-spacing="2.4" fill="var(--label)">${v.toUpperCase()}</text>`;
     if(vi)o+=`<line x1="16" x2="${W-16}" y1="${vi*VH}" y2="${vi*VH}" stroke="var(--line)" stroke-width=".6" stroke-dasharray="1 3"/>`;
     o+=`<line x1="${T([0,0])[0]-14}" y1="${T([0,0])[1]}" x2="${T([0,0])[0]+14}" y2="${T([0,0])[1]}" stroke="var(--line)" stroke-width=".5" stroke-dasharray="6 2 1 2"/><line x1="${T([0,0])[0]}" y1="${T([0,0])[1]-14}" x2="${T([0,0])[0]}" y2="${T([0,0])[1]+14}" stroke="var(--line)" stroke-width=".5" stroke-dasharray="6 2 1 2"/>`;
-    for(const z of all[vi]){const st=z.s.t==="stub",fill=z.bore?"none":st?"#5b4032":z.s.col,fo=st?.55:.22,sw=z.bore?.8:st?.6:1.1,da=z.bore?' stroke-dasharray="3 2"':"",stroke=st?"#5b4032":"var(--ink)";
+    for(const z of all[vi]){const st=z.s.t==="stub",fill=z.bore?"none":st?"#473448":z.s.col,fo=st?.55:.22,sw=z.bore?.8:st?.6:1.1,da=z.bore?' stroke-dasharray="3 2"':"",stroke=st?"#473448":"var(--ink)";
       if(z.k==="c"){const [x,y]=T(z.c);o+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(z.r*sc).toFixed(1)}" fill="${fill}" fill-opacity="${fo}" stroke="${stroke}" stroke-width="${sw}"/>`}
       else o+=`<polygon points="${z.pts.map(T).map(q=>q.map(n=>n.toFixed(1)).join(",")).join(" ")}" fill="${fill}" fill-opacity="${z.bore?0:fo}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"${da}/>`}
     // overall extents
@@ -42,7 +42,7 @@ function drawing(p){
     for(const an of p.ann.filter(x=>x.v===v)){const o0=T(pr(an.o)),R=an.r||40,q1=pr(an.v1),q2=pr(an.v2),a1=Math.atan2(q1[1],q1[0]),a2=Math.atan2(q2[1],q2[0]);
       let d=a2-a1;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;const P1=[o0[0]+R*Math.cos(a1),o0[1]+R*Math.sin(a1)],P2=[o0[0]+R*Math.cos(a1+d),o0[1]+R*Math.sin(a1+d)],am=a1+d/2;
       o+=`<line x1="${o0[0]}" y1="${o0[1]}" x2="${o0[0]+(R+8)*Math.cos(a1)}" y2="${o0[1]+(R+8)*Math.sin(a1)}" stroke="var(--label)" stroke-width=".5" stroke-dasharray="2 2"/><line x1="${o0[0]}" y1="${o0[1]}" x2="${o0[0]+(R+8)*Math.cos(a1+d)}" y2="${o0[1]+(R+8)*Math.sin(a1+d)}" stroke="var(--label)" stroke-width=".5" stroke-dasharray="2 2"/>`;
-      o+=`<path d="M${P1[0].toFixed(1)},${P1[1].toFixed(1)} A${R},${R} 0 0 ${d>0?1:0} ${P2[0].toFixed(1)},${P2[1].toFixed(1)}" fill="none" stroke="#fcb4c4" stroke-width="1.6"/><text x="${(o0[0]+(R+24)*Math.cos(am)).toFixed(1)}" y="${(o0[1]+(R+20)*Math.sin(am)+4).toFixed(1)}" font-size="12" fill="var(--title)" text-anchor="middle">${an.label}</text>`}
+      o+=`<path d="M${P1[0].toFixed(1)},${P1[1].toFixed(1)} A${R},${R} 0 0 ${d>0?1:0} ${P2[0].toFixed(1)},${P2[1].toFixed(1)}" fill="none" stroke="#856a8e" stroke-width="1.6"/><text x="${(o0[0]+(R+24)*Math.cos(am)).toFixed(1)}" y="${(o0[1]+(R+20)*Math.sin(am)+4).toFixed(1)}" font-size="12" fill="var(--title)" text-anchor="middle">${an.label}</text>`}
     p.notes.filter(n=>n.v===v).forEach((n,k)=>{const s=T(pr(n.p)),tx=W-20,ty=vi*VH+56+k*20;o+=`<polyline points="${s[0]},${s[1]} ${tx-150},${ty-4} ${tx-6},${ty-4}" fill="none" stroke="var(--line)" stroke-width=".6"/><circle cx="${s[0]}" cy="${s[1]}" r="1.8" fill="var(--label)"/><text x="${tx}" y="${ty-8}" font-size="11.5" fill="var(--ink)" text-anchor="end">${n.t}</text>`});
   });
   o+=`<defs><marker id="ar" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1.5 L7,4 L0,6.5" fill="none" stroke="var(--label)" stroke-width="1"/></marker></defs>`;
@@ -58,7 +58,7 @@ const rim=new THREE.DirectionalLight(0xfcb4c4,1.2);rim.position.set(-1.4,.6,-1.2
 let grp=null;const mats={};
 const mat=(c,o)=>{const k=c+(o||"");return mats[k]||(mats[k]=new THREE.MeshStandardMaterial({color:c,roughness:o==="in"?.9:.55,metalness:0,side:o==="in"?THREE.BackSide:THREE.FrontSide}))};
 function place(m,a,d){m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(...d).normalize());const A=new THREE.Vector3(...a),D=new THREE.Vector3(...d).normalize();m.position.copy(A);return m}
-function tubeMesh(s){const g=new THREE.Group(),L=s.L,col=s.t==="stub"?"#5b4032":s.col;
+function tubeMesh(s){const g=new THREE.Group(),L=s.L,col=s.t==="stub"?"#473448":s.col;
   const ro=s.t==="stub"?s.r:s.ro;const ri=s.ri||0,dep=s.depth||0,rev=!!s.rev;
   const seg=48;
   // outer wall
