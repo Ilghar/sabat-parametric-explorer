@@ -1,5 +1,5 @@
 /* v7 / v3.4: site column, glass + soft-shadow controls, drop caps */
-:root{--dc:#aa527d;--glass:rgba(249,250,251,.55);--glass-edge:rgba(255,255,255,.75);--sh-d:rgba(71,52,72,.16);--sh-l:rgba(255,255,255,.9);--well:rgba(71,52,72,.10)}
+:root{--dc:#b78597;--glass:rgba(249,250,251,.55);--glass-edge:rgba(255,255,255,.75);--sh-d:rgba(71,52,72,.16);--sh-l:rgba(255,255,255,.9);--well:rgba(71,52,72,.10)}
 [data-theme=dark]{--dc:#fcb4c4;--glass:rgba(48,45,52,.55);--glass-edge:rgba(255,255,255,.10);--sh-d:rgba(0,0,0,.38);--sh-l:rgba(255,255,255,.06);--well:rgba(0,0,0,.28)}
 main{max-width:448px;padding-left:16px;padding-right:16px}
 @media (min-width:768px){main{max-width:576px;padding-left:32px;padding-right:32px}}
