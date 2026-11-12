@@ -1,6 +1,6 @@
-"""Geodesic module generator for the SÁBÁT pavilion (stdlib only).
+"""Structure module generator for the SÁBÁT pavilion (stdlib only).
 
-Builds a frequency-v icosahedral geodesic sphere, cuts it to a dome of a
+Subdivides a frequency-v icosahedral sphere, cuts it to a structure of a
 target height/diameter, groups struts into length families (=modules to
 fabricate) and counts node valences (=3D-printed / machined connectors).
 """
@@ -32,7 +32,7 @@ def _rot_to_z(pts, a):
         out.append((x * c + cx * s + kx * kd * (1 - c), y * c + cy * s + ky * kd * (1 - c), z * c + cz * s))
     return out
 
-def geodesic(freq):
+def subdivide(freq):
     if not (isinstance(freq, int) and 1 <= freq <= 8):
         raise ValueError("frequency must be an int in 1..8")
     v, faces = icosahedron()
@@ -56,11 +56,11 @@ def geodesic(freq):
                     tris.append((grid[i + 1, j], grid[i + 1, j + 1], grid[i, j + 1]))
     return pts, tris
 
-def dome(spec):
+def frame(spec):
     validate(spec)
-    pts, tris = geodesic(spec["frequency"])
+    pts, tris = subdivide(spec["frequency"])
     R = spec["diameter_cm"] / 2
-    zcut = 1 - spec["height_cm"] / R  # dome measured from apex down
+    zcut = 1 - spec["height_cm"] / R  # structure measured from apex down
     def cut(zc):
         k = [t for t in tris if sum(pts[i][2] for i in t) / 3 >= zc - 1e-9]
         if not k: return k, None
@@ -211,7 +211,7 @@ def panel_proxies(result, k=0.22):
     infill_ratio  = star area / panel area (share of panel that is mosaic infill)
     openness      = 1 - infill_ratio (geometric open share of the panel)
     facing_centre = |cos| between panel normal and the direction to the floor
-                    centre of the dome (1 = panel faces the listener spot)
+                    centre of the structure (1 = panel faces the listener spot)
     focus_proxy   = infill_ratio * facing_centre (a rough reflection-focus flag)"""
     out = []; zfloor = min(p[2] for p in result["_geom"]["pts"])
     for i, t in enumerate(_panels(result)):

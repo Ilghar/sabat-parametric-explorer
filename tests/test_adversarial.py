@@ -1,23 +1,23 @@
 import io, json, math, os, tempfile, unittest, contextlib
-from sabat.core import dome, svg, _label
+from sabat.core import frame, svg, _label
 from sabat.cli import main
 B = {"name": "t", "frequency": 3, "diameter_cm": 370, "height_cm": 230}
 
 class Adv(unittest.TestCase):
     def test_freq8_labels(self):
-        r = dome({**B, "frequency": 8, "height_cm": 370})
+        r = frame({**B, "frequency": 8, "height_cm": 370})
         ids = [f["id"] for f in r["strut_families"]]; self.assertEqual(len(ids), len(set(ids)))
         self.assertEqual(_label(25), "Z"); self.assertEqual(_label(26), "AA")
     def test_height_warning(self):
-        self.assertTrue(dome({**B, "frequency": 1, "height_cm": 150})["warnings"])
-        self.assertEqual(dome(B)["warnings"], [])
+        self.assertTrue(frame({**B, "frequency": 1, "height_cm": 150})["warnings"])
+        self.assertEqual(frame(B)["warnings"], [])
     def test_too_small_height(self):
-        with self.assertRaisesRegex(ValueError, "too small"): dome({**B, "height_cm": 5})
+        with self.assertRaisesRegex(ValueError, "too small"): frame({**B, "height_cm": 5})
     def test_bad_numbers(self):
         for k, v in (("diameter_cm", float("nan")), ("diameter_cm", float("inf")), ("diameter_cm", 1e12), ("diameter_cm", 1e-9), ("height_cm", float("nan"))):
-            with self.assertRaises(ValueError): dome({**B, k: v})
+            with self.assertRaises(ValueError): frame({**B, k: v})
     def test_svg_escapes_name(self):
-        s = svg(dome({**B, "name": "<script>&"})); self.assertNotIn("<script>", s); self.assertIn("&lt;script&gt;&amp;", s)
+        s = svg(frame({**B, "name": "<script>&"})); self.assertNotIn("<script>", s); self.assertIn("&lt;script&gt;&amp;", s)
     def _run(self, *a):
         e = io.StringIO()
         with contextlib.redirect_stderr(e), contextlib.redirect_stdout(io.StringIO()): code = main(list(a))
@@ -31,7 +31,7 @@ class Adv(unittest.TestCase):
         c, e = self._run(f.name); os.unlink(f.name); self.assertEqual(c, 2); self.assertIn("JSON object", e)
     def test_length_grouping_robust(self):
         for d in (370, 370.0000001, 1234.5678):
-            r = dome({**B, "diameter_cm": d, "height_cm": d * 0.625})
+            r = frame({**B, "diameter_cm": d, "height_cm": d * 0.625})
             self.assertEqual(len(r["strut_families"]), 3)
 
 class Theme(unittest.TestCase):
@@ -57,4 +57,4 @@ class Theme(unittest.TestCase):
             self.assertIn(needle, h)
     def test_svg_valid_xml_and_themeable(self):
         import xml.dom.minidom
-        s = svg(dome(B)); xml.dom.minidom.parseString(s); self.assertIn("var(--canvas,#f3f1f6)", s)
+        s = svg(frame(B)); xml.dom.minidom.parseString(s); self.assertIn("var(--canvas,#f3f1f6)", s)

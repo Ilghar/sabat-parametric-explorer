@@ -1,20 +1,20 @@
-"""Regression against published Class I icosahedral 3V 5/8 dome tables.
+"""Regression against published Class I icosahedral 3V 5/8 structure tables.
 
 Source (numbers only, no code copied): Desert Domes, "Dome Formulas",
 https://desertdomes.com/formula.html, cross-checked with Domerama,
 "Chord factor charts", http://www.domerama.com/calculators/chord-charts/
-3V: A .34862, B .40355, C .41241; 5/8 dome = 30/55/80 struts,
+3V: A .34862, B .40355, C .41241; 5/8 structure = 30/55/80 struts,
 connectors 15 four-way, 6 five-way, 40 six-way; bend angles 10.04/11.64/11.90 deg.
 """
 import math, unittest
-from sabat.core import dome, connector_table, public
+from sabat.core import frame, connector_table, public
 
 PUBLISHED = {"A": (0.34862, 30), "B": (0.40355, 55), "C": (0.41241, 80)}
 
 class Published3V(unittest.TestCase):
     def setUp(self):
         self.R = 100.0
-        self.r = dome({"name": "ref", "frequency": 3, "diameter_cm": 2 * self.R, "height_cm": 2 * self.R * 0.625})
+        self.r = frame({"name": "ref", "frequency": 3, "diameter_cm": 2 * self.R, "height_cm": 2 * self.R * 0.625})
 
     def test_chord_factors_and_counts(self):
         fam = {f["id"]: f for f in self.r["strut_families"]}

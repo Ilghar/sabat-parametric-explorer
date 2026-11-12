@@ -18,7 +18,7 @@ const K={clear:0.2,wallF:4.45,/* (29.3-20.4)/2: 21.3 tube + 4 mm casting wall [A
   boss:9,hubAllow:88/* Hubs kit: stick = chord − 88 mm [S] */};
 function derive(res,stick){
   const s=stick/20,ps=stick/2,boreF=stick+2*K.clear,boreP=ps+2*K.clear;
-  const P=res.pts.map(p=>mul(p,10)),O=[0,0,res.leg*10];           // mm, dome centre
+  const P=res.pts.map(p=>mul(p,10)),O=[0,0,res.leg*10];           // mm, structure centre
   const nb=i=>res.edges.filter(e=>e[0]===i||e[1]===i).map(e=>e[0]===i?e[1]:e[0]);
   const out={},f1=x=>Math.round(x*10)/10;
   // ---------- hubs: strut directions in the hub frame (Y = outward normal) ----------
