@@ -6,9 +6,9 @@ const q=new URLSearchParams(location.search);
 let res=null,yaw=+(q.get("yaw")||0.6),pitch=+(q.get("pitch")||0.25);
 const st={open:q.get("open")==="1",star:+(q.get("star")||1),cover:q.get("cover")!=="0"};
 ["dia","peak","leg","stk"].forEach(k=>{if(q.get(k))$(k).value=q.get(k)});
-const KNIT=[90,63,82],TARP=[163,160,155],WOOD="#5b4032"/* walnut: wood material colour of the sticks */,GAMMA=1.15,NU=6,NT=9;
+const KNIT=[90,63,82],TARP=[163,160,155],WOOD="#473448"/* walnut: wood material colour of the sticks */,GAMMA=1.15,NU=6,NT=9;
 // one colour per connector group, from the studio palette (same as the stage 1 GLBs and renders)
-const GRP={hub5:"#473448",hub6:"#775a76",corner:"#775a76",tee:"#fcb4c4",peak:"#2a272d"/* peak connector material: dark grey (Hāèl) */};
+const GRP={hub5:"#473448",hub6:"#775a76",corner:"#775a76",tee:"#856a8e",peak:"#2a272d"/* peak connector material: dark grey (Hāèl) */};
 const RIM=()=>"#f9fafb";
 const rgb=(c,k)=>`rgb(${c.map(v=>Math.round(Math.min(255,v*k))).join(",")})`;
 const sub=(a,b)=>a.map((v,i)=>v-b[i]),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
@@ -40,9 +40,9 @@ function compute(){
   const k=sk/26.9;
   const sw=(g,sq)=>g?`<span class="sw${sq?" sq":""}" style="background:${GRP[g]}" aria-hidden="true"></span>`:`<span class="sw none" aria-hidden="true"></span>`;
   $("con").tBodies[0].innerHTML=[["5-way hub",c.hub5,"hub5"],["6-way hub",c.hub6,"hub6"],["L-shaped Rohrverbinder, Eckstück durchgehend 20A, 20 mm bores, at the entrance",c.corner,"corner",1],["T-shaped Rohrverbinder, T-Stück kurz 2A (1 pyramid strut)",c.teeShort,"tee"],["T-shaped Rohrverbinder, T-Stück 2A with side outlet (2 pyramid struts)",c.teeSide,"tee"],["Three-arm peak connector, 3D-printed, held under the cover",c.peaks,"peak"],["Knitted pyramid",c.pyramid],["Grey tarp triangle",c.flat],["Entrance (open triangles)",c.entrance],[`Leg (${lg} cm)`,c.legs]].map(([a,b,g,sq])=>`<tr><td>${sw(g,sq)}${a}</td><td class="n">${b}</td></tr>`).join("");
-  $("conN").textContent=`Frame: Hubs kit 2V dome. Rohrverbinder after the cast clamps 6080Z20 (L) and 6080Z02 (T), scaled to a ${sk} mm stick (corner a ≈ ${f1(40*k)} mm, tee a ≈ ${f1(41*k)} mm). ${st.open?`The ${c.corner} L corners sit at the foot of the entrance, where the ring stick runs through and one frame stick rises.`:"L corners are only needed when the entrance is open."} ${st.open?`Star ${st.star} removed for the entrance: ${c.pyramid} pyramids.`:`All ${c.stars} stars closed: ${c.pyramid} pyramids.`}`;
+  $("conN").textContent=`Frame: 2V hub kit. Rohrverbinder after the cast clamps 6080Z20 (L) and 6080Z02 (T), scaled to a ${sk} mm stick (corner a ≈ ${f1(40*k)} mm, tee a ≈ ${f1(41*k)} mm). ${st.open?`The ${c.corner} L corners sit at the foot of the entrance, where the ring stick runs through and one frame stick rises.`:"L corners are only needed when the entrance is open."} ${st.open?`Star ${st.star} removed for the entrance: ${c.pyramid} pyramids.`:`All ${c.stars} stars closed: ${c.pyramid} pyramids.`}`;
   $("big").innerHTML=`Ø ${D} × H ${Math.round(c.hubH)} cm`;
-  $("hOut").textContent=`Height to the crown hub ${f1(c.hubH)} cm (dome ${f1(res.R)} + legs ${lg}); to the crown peak tip ${f1(c.tipH)} cm. Footprint across the peak tips Ø ${f1(c.tipD)} cm. Built: Ø 352 × 230 cm.`;
+  $("hOut").textContent=`Height to the crown hub ${f1(c.hubH)} cm (structure ${f1(res.R)} + legs ${lg}); to the crown peak tip ${f1(c.tipH)} cm. Footprint across the peak tips Ø ${f1(c.tipD)} cm. Built: Ø 352 × 230 cm.`;
   draw();
 }
 function draw(){if(!res)return;plan();elev();iso();}
